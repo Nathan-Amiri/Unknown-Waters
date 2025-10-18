@@ -2,8 +2,10 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
-  tags: []
+  serializedVersion: 3
+  tags:
+  - Fish
+  - Junk
   layers:
   - Default
   - TransparentFX
@@ -38,6 +40,23 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 508097093
+    locked: 0
+  - name: FishingTerrain
+    uniqueID: 203155859
+    locked: 0
+  - name: Hookables
+    uniqueID: 3784775217
+    locked: 0
+  - name: Hook
+    uniqueID: 3018760617
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: UI
+    uniqueID: 3595334187
+    locked: 0
+  m_RenderingLayers:
+  - Default
