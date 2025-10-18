@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Xml.Xsl;
 using TMPro;
 using UnityEngine;
 
@@ -11,12 +10,24 @@ public class FishingMinigame : MonoBehaviour
     [SerializeField] private RectTransform depthMeterBack;
     [SerializeField] private RectTransform depthMeterBar;
 
+    [SerializeField] private RectTransform tensionMeterBack;
+    [SerializeField] private RectTransform tensionMeterBar;
+
     [SerializeField] private Rigidbody2D hookRB;
 
     // CONSTANT:
     public float fallSpeed;
     public float reelSpeed;
     public float moveSpeed;
+
+    public float fishStrugglePause; // The duration of the wait in between struggling
+    public float fishStruggleDuration; // The duration of the struggle
+    public float fishStruggleVariance; // The amount the above two variables can change by
+
+    public float fishStruggleStrength;
+
+    public float tensionIncreaseSpeed;
+    public float tensionDecreaseSpeed;
 
     private readonly float xLimit = 8;
     private readonly float yLimit = 30;
@@ -27,7 +38,12 @@ public class FishingMinigame : MonoBehaviour
     private float moveInput;
     private bool reelInput;
 
-    private bool hooked;
+    private Transform hookedItem;
+
+    private float tension;
+    private bool fishStruggling;
+
+    private Coroutine fishStruggleRoutine;
 
 
 
@@ -82,12 +98,36 @@ public class FishingMinigame : MonoBehaviour
             float barHeight = (depthMeterBack.rect.height / ratio) + offset;
             depthMeterBar.transform.localPosition = new(0, barHeight);
         }
+
+        // Tension meter
+        if (reelInput && fishStruggling)
+            tension += tensionIncreaseSpeed * Time.deltaTime;
+        else
+            tension -= tensionDecreaseSpeed * Time.deltaTime;
+
+        if (tension > 100)
+            tension = 100;
+        if (tension < 0)
+            tension = 0;
+
+        // This code block isn't a typo fyi
+        {
+            float ratio = 100 / tension;
+            if (ratio > 100) ratio = 100;
+            float offset = tensionMeterBack.rect.height / 2;
+            float barHeight = (tensionMeterBack.rect.height / ratio) - offset;
+            tensionMeterBar.transform.localPosition = new(0, barHeight);
+        }
     }
 
     private void FixedUpdate()
     {
         // Hook control
-        hookRB.linearVelocity = new Vector2(moveSpeed * moveInput, reelInput ? reelSpeed : -fallSpeed);
+        float ySpeed = reelInput ? reelSpeed : -fallSpeed;
+        if (fishStruggling)
+            ySpeed -= fishStruggleStrength;
+
+        hookRB.linearVelocity = new Vector2(moveSpeed * moveInput, ySpeed);
     }
 
     private void LateUpdate()
@@ -100,25 +140,62 @@ public class FishingMinigame : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (hooked) return;
+        if (col.CompareTag("Fisherman") && hookedItem != null)
+        {
+            if (hookedItem.TryGetComponent(out Fish fish))
+            {
+                Debug.Log("You caught a fish!");
+            }
+
+            StopCoroutine(fishStruggleRoutine);
+            fishStruggling = false;
+            tension = 0;
+
+            Destroy(hookedItem.gameObject);
+            hookedItem = null;
+        }
+
+        if (hookedItem != null) return;
 
         if (col.CompareTag("Junk"))
         {
-            hooked = true;
+            hookedItem = col.transform;
 
-            col.transform.parent = transform;
-            col.transform.localPosition = new(0, -2f);
+            hookedItem.parent = transform;
+            hookedItem.localPosition = new(0, -2f);
         }
         else if (col.CompareTag("Fish"))
         {
-            hooked = true;
+            hookedItem = col.transform;
 
             col.GetComponent<Fish>().StopSwimming();
 
-            col.transform.parent = transform;
-            col.transform.rotation = Quaternion.Euler(0, 0, -90);
-            col.transform.localPosition = new(0, -1.5f);
+            hookedItem.parent = transform;
+            hookedItem.rotation = Quaternion.Euler(0, 0, -90);
+            hookedItem.localPosition = new(0, -1.5f);
+
+            fishStruggleRoutine = StartCoroutine(FishStruggle());
         }
+    }
+
+    private IEnumerator FishStruggle()
+    {
+        while (true)
+        {
+            float waitTime = Random.Range(fishStrugglePause - fishStruggleVariance, fishStrugglePause + fishStruggleVariance);
+            yield return new WaitForSeconds(waitTime);
+
+            fishStruggling = true;
+
+            float struggleTime = Random.Range(fishStruggleDuration - fishStruggleVariance, fishStruggleDuration + fishStruggleVariance);
+            yield return new WaitForSeconds(struggleTime);
+
+            fishStruggling = false;
+        }
+    }
+
+    private void ToggleFishStruggle()
+    {
 
     }
 }
