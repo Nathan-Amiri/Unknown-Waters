@@ -477,6 +477,11 @@ RectTransform:
   m_AnchoredPosition: {x: -850, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &733683086 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1426867298816777847, guid: ad0d29bc6ec65c94fb45d59825517bbd, type: 3}
+  m_PrefabInstance: {fileID: 4185382766413129554}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &911789510
 GameObject:
   m_ObjectHideFlags: 0
@@ -2240,6 +2245,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 479366285058185385, guid: ad0d29bc6ec65c94fb45d59825517bbd, type: 3}
   m_PrefabInstance: {fileID: 4185382766413129554}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3907497984737918907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733683086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd925f135fbdaba40a5eed8f3270a4a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JunkFloat
+  bobAmplitude: 0.1
+  bobFrequency: 1
+  swayAmplitude: 0.05
+  swayFrequency: 0.5
 --- !u!1001 &4185382766413129554
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2311,7 +2332,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1426867298816777847, guid: ad0d29bc6ec65c94fb45d59825517bbd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3907497984737918907}
   m_SourcePrefab: {fileID: 100100000, guid: ad0d29bc6ec65c94fb45d59825517bbd, type: 3}
 --- !u!1001 &4968948452403392824
 PrefabInstance:

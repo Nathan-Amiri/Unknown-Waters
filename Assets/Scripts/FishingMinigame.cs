@@ -169,12 +169,16 @@ public class FishingMinigame : MonoBehaviour
         else if (col.CompareTag("Fish"))
         {
             hookedItem = col.transform;
-
-            col.GetComponent<Fish>().StopSwimming();
+            var fish = col.GetComponent<Fish>();
+            fish.StopSwimming();
 
             hookedItem.parent = transform;
-            hookedItem.rotation = Quaternion.Euler(0, 0, -90);
-            hookedItem.localPosition = new(0, -1.5f);
+            hookedItem.localPosition = new Vector3(0, -1.5f, 0f);
+
+            // Rotate correctly depending on facing direction
+            var sr = hookedItem.GetComponentInChildren<SpriteRenderer>();
+            float zRot = (sr != null && sr.flipX) ? -90f : 90f;
+            hookedItem.rotation = Quaternion.Euler(0, 0, zRot);
 
             fishStruggleRoutine = StartCoroutine(FishStruggle());
         }
