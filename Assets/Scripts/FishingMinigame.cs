@@ -60,7 +60,7 @@ public class FishingMinigame : MonoBehaviour
     private IEnumerator ClockRoutine()
     {
         timer = 59;
-        
+
         while (timer > 0)
         {
             clockText.text = timer.ToString();
@@ -130,13 +130,15 @@ public class FishingMinigame : MonoBehaviour
         hookRB.linearVelocity = new Vector2(moveSpeed * moveInput, ySpeed);
     }
 
-    private void LateUpdate()
-    {
-        // Camera follow hook
-        Vector3 newPosition = transform.position;
-        newPosition.z = -10;
-        Camera.main.transform.position = newPosition;
-    }
+    /*
+        private void LateUpdate()
+        {
+            // Camera follow hook
+            Vector3 newPosition = transform.position;
+            newPosition.z = -10;
+            Camera.main.transform.position = newPosition;
+        }
+    */
 
     private void OnTriggerEnter2D(Collider2D col)
     {
