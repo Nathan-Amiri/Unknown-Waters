@@ -5,13 +5,12 @@ public class FishingLineCurved : MonoBehaviour
 {
     [Header("References")]
     public Rigidbody2D hookRB;
-
+    public Transform customAnchor; // if null -> top of screen above hook X
 
     [Header("Rope physics")]
     public bool useJoint = true;
     public bool limitOnly = true;  // leash (max distance only)
     public float ropeLength = 25f;
-
 
     [Header("Visual curve")]
     [Range(4, 64)] public int segments = 6;
@@ -30,7 +29,6 @@ public class FishingLineCurved : MonoBehaviour
 
     [Header("Hook attach offset (world units)")]
     public float hookEndYOffset = 0.35f;
-
 
     [Header("Slack gating (reduce bagginess near top)")]
     public float sagStartSlack = 0.4f;  // no sag below this slack
@@ -73,6 +71,7 @@ public class FishingLineCurved : MonoBehaviour
     {
         if (!hookRB) return;
 
+        Vector2 anchor = customAnchor ? (Vector2)customAnchor.position : GetTopOfScreenAboveHook();
         Vector2 end = (Vector2)hookRB.position + Vector2.up * hookEndYOffset;
 
         // keep joint at current anchor
