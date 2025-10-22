@@ -147,9 +147,9 @@ public class FishingMinigame : MonoBehaviour
             if (hookedItem.TryGetComponent(out Fish fish))
             {
                 Debug.Log("You caught a fish!");
+                StopCoroutine(fishStruggleRoutine);
             }
 
-            StopCoroutine(fishStruggleRoutine);
             fishStruggling = false;
             tension = 0;
 
