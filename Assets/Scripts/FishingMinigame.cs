@@ -1,21 +1,23 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class FishingMinigame : MonoBehaviour
 {
     // SCENE REFERENCE:
-    [SerializeField] private TMP_Text clockText;
-    [SerializeField] private RectTransform depthMeterBack;
-    [SerializeField] private RectTransform depthMeterBar;
-
-    [SerializeField] private RectTransform tensionMeterBack;
-    [SerializeField] private RectTransform tensionMeterBar;
+    [SerializeField] private GameManager gameManager;
 
     [SerializeField] private Rigidbody2D hookRB;
 
+    [SerializeField] private TMP_Text clockText;
+    [SerializeField] private RectTransform depthMeterBack;
+    [SerializeField] private RectTransform depthMeterBar;
+    [SerializeField] private RectTransform tensionMeterBack;
+    [SerializeField] private RectTransform tensionMeterBar;
+
     // CONSTANT:
+    public int timerLength;
+
     public float fallSpeed;
     public float reelSpeed;
     public float moveSpeed;
@@ -59,17 +61,19 @@ public class FishingMinigame : MonoBehaviour
 
     private IEnumerator ClockRoutine()
     {
-        timer = 59;
+        timer = timerLength;
+        clockText.text = timer.ToString();
 
         while (timer > 0)
         {
-            clockText.text = timer.ToString();
-            timer -= 1;
-
             yield return new WaitForSeconds(1);
+
+            timer -= 1;
+            clockText.text = timer.ToString();
         }
 
-        Debug.Log("Time's up!");
+        // Put a time's up message here
+        gameManager.StopFishing();
     }
 
     private void Update()
@@ -130,16 +134,6 @@ public class FishingMinigame : MonoBehaviour
         hookRB.linearVelocity = new Vector2(moveSpeed * moveInput, ySpeed);
     }
 
-    /*
-        private void LateUpdate()
-        {
-            // Camera follow hook
-            Vector3 newPosition = transform.position;
-            newPosition.z = -10;
-            Camera.main.transform.position = newPosition;
-        }
-    */
-
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Fisherman") && hookedItem != null)
@@ -148,6 +142,14 @@ public class FishingMinigame : MonoBehaviour
             {
                 Debug.Log("You caught a fish!");
                 StopCoroutine(fishStruggleRoutine);
+            }
+            else
+            {
+                // If catch junk, subtract time
+                timer -= 10;
+                if (timer < 1)
+                    timer = 1;
+                clockText.text = timer.ToString();
             }
 
             fishStruggling = false;
