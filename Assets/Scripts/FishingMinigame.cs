@@ -32,7 +32,7 @@ public class FishingMinigame : MonoBehaviour
     public float tensionDecreaseSpeed;
 
     private readonly float xLimit = 8;
-    private readonly float yLimit = 30;
+    private readonly float yLimit = 39;
 
     // DYNAMIC:
     private int timer;
@@ -49,14 +49,19 @@ public class FishingMinigame : MonoBehaviour
 
 
 
-    private void Start()
+    private void OnEnable()
     {
         StartFishing();
     }
 
     private void StartFishing()
     {
-        StartCoroutine(ClockRoutine());
+        hookRB.transform.position = Vector2.zero;
+
+        if (gameManager.currentDay < 5)
+            StartCoroutine(ClockRoutine());
+        else
+            clockText.text = string.Empty;
     }
 
     private IEnumerator ClockRoutine()
@@ -71,6 +76,17 @@ public class FishingMinigame : MonoBehaviour
             timer -= 1;
             clockText.text = timer.ToString();
         }
+
+        StopFishing();
+    }
+
+    private void StopFishing()
+    {
+        StopAllCoroutines();
+        tension = 0;
+        fishStruggling = false;
+        hookedItem = null;
+        fishStruggleRoutine = null;
 
         // Put a time's up message here
         gameManager.StopFishing();

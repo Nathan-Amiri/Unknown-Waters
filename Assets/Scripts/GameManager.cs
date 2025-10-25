@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
 
     public Vector2 enterHousePosition;
     public Vector2 leaveHousePosition;
+    public Vector2 stopFishingPosition;
 
     // DYNAMIC:
     private Vector2 moveInput;
@@ -60,6 +61,7 @@ public class GameManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // Move
         if (!isStunned)
             playerRB.linearVelocity = moveSpeed * moveInput;
     }
@@ -81,9 +83,6 @@ public class GameManager : MonoBehaviour
     public void TriggerEvent(string eventMessage, string newChoiceEventName = default)
     {
         choiceEventName = newChoiceEventName;
-
-        if (choiceEventName == "Fishing" && hasFishedToday)
-            return;
 
         ToggleStun(true);
 
@@ -122,18 +121,21 @@ public class GameManager : MonoBehaviour
         {
             if (hasLantern)
             {
-                // Change player sprite to remove lantern
+                // CHANGE PLAYER SPRITE TO REMOVE LANTERN
+
                 hasLantern = false;
             }
             else
             {
-                // Change player sprite to have lantern
+                // CHANGE PLAYER SPRITE TO HAVE LANTERN
+
                 hasLantern = true;
             }
         }
         else if (choiceEventName == "Bed")
         {
-            // Change to day lighting
+            // CHANGE TO DAY LIGHTING
+
             currentDay += 1;
             hasFishedToday = false;
         }
@@ -156,6 +158,10 @@ public class GameManager : MonoBehaviour
     }
     public void StopFishing() // Called by FishingMinigame
     {
+        // CHANGE TO NIGHT LIGHTING
+
+        playerRB.transform.position = stopFishingPosition;
+
         isStunned = false;
 
         overworldToggle.SetActive(true);
