@@ -1,43 +1,51 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D), typeof(Animator))]
 public class PlayerLanternController : MonoBehaviour
 {
-    public float moveSpeed = 5f;
 
     Rigidbody2D rb;
     Animator anim;
 
     Vector2 input;
-    Vector2 facing = Vector2.down;
+    Vector2 lastFacing = Vector2.down;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
         rb.gravityScale = 0f;
         rb.freezeRotation = true;
-        rb.interpolation = RigidbodyInterpolation2D.Interpolate;
     }
 
     void Update()
     {
-        float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
+        // Read actual motion coming from GameManager
+        Vector2 vel = rb.linearVelocity;
 
-        input = new Vector2(x, y);
-        if (input.sqrMagnitude > 1f) input.Normalize();
+        // Are we moving?
+        bool moving = vel.sqrMagnitude > 0.0001f;
 
-        if (input.sqrMagnitude > 0.0001f)
-            facing = input;
+        // Use current velocity for facing, else hold last facing for idle
+        Vector2 dir = moving ? vel.normalized : lastFacing;
 
-        anim.SetFloat("MoveX", facing.x);
-        anim.SetFloat("MoveY", facing.y);
-        anim.SetFloat("Speed", input.magnitude);
+        // Snap to 4-way so the correct clip plays (no diagonal blending)
+        if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
+        {
+            dir = new Vector2(Mathf.Sign(dir.x), 0f);
+        }
+        else
+        {
+            dir = new Vector2(0f, Mathf.Sign(dir.y));
+        }
+
+        if (moving)
+            lastFacing = dir;
+
+        anim.SetFloat("MoveX", dir.x);
+        anim.SetFloat("MoveY", dir.y);
+        anim.SetFloat("Speed", moving ? 1f : 0f); // clean on/off for transitions
     }
 
-    void FixedUpdate()
-    {
-        rb.MovePosition(rb.position + input * moveSpeed * Time.fixedDeltaTime);
-    }
 }

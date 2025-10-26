@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     // DYNAMIC:
     private Vector2 moveInput;
 
-        // Choice event variables:
+    // Choice event variables:
     private string choiceEventName;
     [NonSerialized] public int currentDay = 1;
     [NonSerialized] public int obedience;
@@ -64,8 +64,14 @@ public class GameManager : MonoBehaviour
         // Move
         if (!isStunned)
             playerRB.linearVelocity = moveSpeed * moveInput;
+
+        // Camera follow player
+        Vector3 newPosition = playerRB.position;
+        newPosition.z = -10;
+        overworldCamera.position = newPosition;
     }
 
+    /*
     private void LateUpdate()
     {
         // Camera follow player
@@ -74,6 +80,7 @@ public class GameManager : MonoBehaviour
         overworldCamera.transform.position = newPosition;
     }
 
+*/
     private void ToggleStun(bool stun)
     {
         isStunned = stun;
