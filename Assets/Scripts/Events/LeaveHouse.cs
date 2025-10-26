@@ -15,7 +15,7 @@ public class LeaveHouse : EventTrigger
         if (gameManager.hasFishedToday)
             message = "Go outside?";
         else if (gameManager.currentDay == 1)
-            message = "There's a note under the door. It reads, \"I'm a bit hungry. Would you mind leaving some fish for me?\"\n\nGo outside?";
+            message = "There's a note under the door. It reads, \"Beneath the stillness, something turns. Three yellow tang will soothe its sleep. Offer them to the altar once the light fades. Their blood must touch the stone before you rest.\"\n\nGo outside?";
 
         else if (gameManager.currentDay == 2)
             message = "There's a note under the door. It reads, \"You are forbidden from looking at the tree today. Do not defy me.\"\n\nGo outside?";
