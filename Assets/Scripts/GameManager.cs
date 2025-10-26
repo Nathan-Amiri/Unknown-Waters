@@ -18,7 +18,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject yesButton;
     [SerializeField] private GameObject noButton;
 
+    [SerializeField] private GameObject lanternSpr;
+    [SerializeField] private GameObject lanternGlowPlayer;
+
     [SerializeField] private List<GameObject> fishingDayLayouts = new();
+
 
     // CONSTANT:
     public float moveSpeed;
@@ -128,15 +132,37 @@ public class GameManager : MonoBehaviour
         {
             if (hasLantern)
             {
-                // CHANGE PLAYER SPRITE TO REMOVE LANTERN
-
+                // If player currently has it put it back
                 hasLantern = false;
+
+                // Enable the scene lantern again
+                if (lanternSpr != null)
+                    lanternSpr.SetActive(true);
+
+
+                // Turn off the player’s glow
+                if (lanternGlowPlayer != null)
+                    lanternGlowPlayer.SetActive(false);
+
+
+                // CHANGE PLAYER SPRITE TO REMOVE LANTERN
             }
             else
             {
-                // CHANGE PLAYER SPRITE TO HAVE LANTERN
-
+                // Player picks it up
                 hasLantern = true;
+
+                // Hide the scene lantern
+                if (lanternSpr != null)
+                    lanternSpr.SetActive(false);
+
+
+                // Turn on the player’s glow
+                if (lanternGlowPlayer != null)
+                    lanternGlowPlayer.SetActive(true);
+
+
+                // CHANGE PLAYER SPRITE TO HAVE LANTERN
             }
         }
         else if (choiceEventName == "Bed")
