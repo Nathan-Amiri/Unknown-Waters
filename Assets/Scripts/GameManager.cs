@@ -18,10 +18,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject yesButton;
     [SerializeField] private GameObject noButton;
 
+    [SerializeField] private List<GameObject> fishingDayLayouts = new();
+
+
+    //ANIMATION
     [SerializeField] private GameObject lanternSpr;
     [SerializeField] private GameObject lanternGlowPlayer;
-
-    [SerializeField] private List<GameObject> fishingDayLayouts = new();
+    [SerializeField] private Animator playerAnimator;
 
 
     // CONSTANT:
@@ -45,6 +48,18 @@ public class GameManager : MonoBehaviour
 
     private bool isStunned;
 
+
+    void Start()
+    {
+        if (lanternSpr != null)
+            lanternSpr.SetActive(!hasLantern);
+
+        if (lanternGlowPlayer != null)
+            lanternGlowPlayer.SetActive(hasLantern);
+
+        if (playerAnimator != null)
+            playerAnimator.SetBool("HasLantern", hasLantern);
+    }
 
     private void Update()
     {
@@ -132,20 +147,20 @@ public class GameManager : MonoBehaviour
         {
             if (hasLantern)
             {
-                // If player currently has it put it back
+                // If player currently has it, put it back
                 hasLantern = false;
 
                 // Enable the scene lantern again
                 if (lanternSpr != null)
                     lanternSpr.SetActive(true);
 
-
                 // Turn off the player’s glow
                 if (lanternGlowPlayer != null)
                     lanternGlowPlayer.SetActive(false);
 
-
-                // CHANGE PLAYER SPRITE TO REMOVE LANTERN
+                // Switch to non-lantern animation set
+                if (playerAnimator != null)
+                    playerAnimator.SetBool("HasLantern", false);
             }
             else
             {
@@ -156,13 +171,13 @@ public class GameManager : MonoBehaviour
                 if (lanternSpr != null)
                     lanternSpr.SetActive(false);
 
-
                 // Turn on the player’s glow
                 if (lanternGlowPlayer != null)
                     lanternGlowPlayer.SetActive(true);
 
-
-                // CHANGE PLAYER SPRITE TO HAVE LANTERN
+                // Switch to lantern animation set
+                if (playerAnimator != null)
+                    playerAnimator.SetBool("HasLantern", true);
             }
         }
         else if (choiceEventName == "Bed")

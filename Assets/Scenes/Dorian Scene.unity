@@ -8842,14 +8842,15 @@ MonoBehaviour:
   okayButton: {fileID: 487520750}
   yesButton: {fileID: 1673150344}
   noButton: {fileID: 1817642414}
-  lanternSpr: {fileID: 2017562975}
-  lanternGlowPlayer: {fileID: 1688277715}
   fishingDayLayouts:
   - {fileID: 1723071309}
   - {fileID: 1668616316}
   - {fileID: 542373956}
   - {fileID: 2122035164}
   - {fileID: 572845291}
+  lanternSpr: {fileID: 2017562975}
+  lanternGlowPlayer: {fileID: 1688277715}
+  playerAnimator: {fileID: 2001735244}
   moveSpeed: 6
   enterHousePosition: {x: -49, y: 3.5}
   leaveHousePosition: {x: 1.5, y: 7.5}
@@ -10002,6 +10003,11 @@ Transform:
 --- !u!50 &2001735242 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 1035505635304401382, guid: f545562f40baf4847b759484113a2e97, type: 3}
+  m_PrefabInstance: {fileID: 1931124267}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2001735244 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6224850852354173741, guid: f545562f40baf4847b759484113a2e97, type: 3}
   m_PrefabInstance: {fileID: 1931124267}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2002200074
