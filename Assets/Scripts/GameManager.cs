@@ -90,16 +90,6 @@ public class GameManager : MonoBehaviour
         overworldCamera.position = newPosition;
     }
 
-    /*
-    private void LateUpdate()
-    {
-        // Camera follow player
-        Vector3 newPosition = playerRB.position;
-        newPosition.z = -10;
-        overworldCamera.transform.position = newPosition;
-    }
-
-*/
     private void ToggleStun(bool stun)
     {
         isStunned = stun;
