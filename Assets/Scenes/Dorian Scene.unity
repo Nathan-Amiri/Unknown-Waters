@@ -2628,7 +2628,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &572845292
 Transform:
   m_ObjectHideFlags: 0
@@ -5668,8 +5668,12 @@ PrefabInstance:
       value: 6.5
       objectReference: {fileID: 0}
     - target: {fileID: 7673542943590158923, guid: 41c5cdadc6aebfb409f7d99a2a3ebfac, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673542943590158923, guid: 41c5cdadc6aebfb409f7d99a2a3ebfac, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7673542943590158923, guid: 41c5cdadc6aebfb409f7d99a2a3ebfac, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5714,7 +5718,7 @@ PrefabInstance:
     - target: {fileID: 8120372398021004463, guid: 41c5cdadc6aebfb409f7d99a2a3ebfac, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 4363123043507908328, guid: 0b4375b972631f749980cde4e1372c98, type: 3}
+      objectReference: {fileID: 4782698811063276167, guid: 08b7097e9784f9a47a0f2cf471e51ec1, type: 3}
     - target: {fileID: 8120372398021004463, guid: 41c5cdadc6aebfb409f7d99a2a3ebfac, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -8399,7 +8403,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1723071310
 Transform:
   m_ObjectHideFlags: 0
@@ -9290,8 +9294,12 @@ PrefabInstance:
       value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 7673542943590158923, guid: 41c5cdadc6aebfb409f7d99a2a3ebfac, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673542943590158923, guid: 41c5cdadc6aebfb409f7d99a2a3ebfac, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7673542943590158923, guid: 41c5cdadc6aebfb409f7d99a2a3ebfac, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9336,7 +9344,7 @@ PrefabInstance:
     - target: {fileID: 8120372398021004463, guid: 41c5cdadc6aebfb409f7d99a2a3ebfac, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 4363123043507908328, guid: 0b4375b972631f749980cde4e1372c98, type: 3}
+      objectReference: {fileID: 4782698811063276167, guid: 08b7097e9784f9a47a0f2cf471e51ec1, type: 3}
     - target: {fileID: 8120372398021004463, guid: 41c5cdadc6aebfb409f7d99a2a3ebfac, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -10486,6 +10494,10 @@ PrefabInstance:
     - target: {fileID: 5500099106456936245, guid: 9c4560ad8900d834c81548fb793851c4, type: 3}
       propertyPath: m_Name
       value: lantern_spr
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769126770019763961, guid: 9c4560ad8900d834c81548fb793851c4, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
