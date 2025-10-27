@@ -1,19 +1,28 @@
 fileFormatVersion: 2
-guid: b73e47828c3ffd546942387493785a5c
+guid: 9b46f89cf96f7914f9a13b18e088ec43
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3811097287335161523
-    second: fisherman-walkright-lantern_0
+      213: -4081528680750371685
+    second: overworld-pierv1_0
   - first:
-      213: -4018133905468848749
-    second: fisherman-walkright-lantern_1
+      213: -1370112449599590865
+    second: overworld-pierv1_1
   - first:
-      213: 2796461967932742548
-    second: fisherman-walkright-lantern_2
+      213: 5141124784135682461
+    second: overworld-pierv1_2
   - first:
-      213: -4785295329608895654
-    second: fisherman-walkright-lantern_3
+      213: -848200174010670560
+    second: overworld-pierv1_3
+  - first:
+      213: -8619348871794631625
+    second: overworld-pierv1_4
+  - first:
+      213: 3743867726560641431
+    second: overworld-pierv1_5
+  - first:
+      213: 1424326263467830237
+    second: overworld-pierv1_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +55,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -60,7 +69,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 30
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -84,7 +93,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -122,13 +131,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fisherman-walkright-lantern_0
+      name: overworld-pierv1_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 5
-        width: 26
-        height: 33
+        x: 0
+        y: 34
+        width: 1195
+        height: 401
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +146,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3be21107accb3e430800000000000000
-      internalID: 3811097287335161523
+      spriteID: b9c2e4b2a4f7b57c0800000000000000
+      internalID: -4081528680750371685
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fisherman-walkright-lantern_1
+      name: overworld-pierv1_1
       rect:
         serializedVersion: 2
-        x: 49
-        y: 5
+        x: 806
+        y: 25
         width: 27
-        height: 33
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -159,20 +168,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 39583908088bc38c0800000000000000
-      internalID: -4018133905468848749
+      spriteID: f2ea64b7cf16cfce0800000000000000
+      internalID: -1370112449599590865
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fisherman-walkright-lantern_2
+      name: overworld-pierv1_2
       rect:
         serializedVersion: 2
-        x: 93
-        y: 5
-        width: 26
-        height: 33
+        x: 1147
+        y: 20
+        width: 24
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,20 +190,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 49b5582f7570fc620800000000000000
-      internalID: 2796461967932742548
+      spriteID: d993d5890c1f85740800000000000000
+      internalID: 5141124784135682461
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fisherman-walkright-lantern_3
+      name: overworld-pierv1_3
       rect:
         serializedVersion: 2
-        x: 136
-        y: 5
-        width: 26
-        height: 33
+        x: 801
+        y: 10
+        width: 17
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,8 +212,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a5373555047379db0800000000000000
-      internalID: -4785295329608895654
+      spriteID: 0226ba98f669a34f0800000000000000
+      internalID: -848200174010670560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: overworld-pierv1_4
+      rect:
+        serializedVersion: 2
+        x: 1137
+        y: 11
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73c548d4edbe16880800000000000000
+      internalID: -8619348871794631625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: overworld-pierv1_5
+      rect:
+        serializedVersion: 2
+        x: 1153
+        y: 7
+        width: 17
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79142b78cd3e4f330800000000000000
+      internalID: 3743867726560641431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: overworld-pierv1_6
+      rect:
+        serializedVersion: 2
+        x: 817
+        y: 0
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddb6242b03934c310800000000000000
+      internalID: 1424326263467830237
       vertices: []
       indices: 
       edges: []
@@ -223,10 +298,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      fisherman-walkright-lantern_0: 3811097287335161523
-      fisherman-walkright-lantern_1: -4018133905468848749
-      fisherman-walkright-lantern_2: 2796461967932742548
-      fisherman-walkright-lantern_3: -4785295329608895654
+      overworld-pierv1_0: -4081528680750371685
+      overworld-pierv1_1: -1370112449599590865
+      overworld-pierv1_2: 5141124784135682461
+      overworld-pierv1_3: -848200174010670560
+      overworld-pierv1_4: -8619348871794631625
+      overworld-pierv1_5: 3743867726560641431
+      overworld-pierv1_6: 1424326263467830237
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

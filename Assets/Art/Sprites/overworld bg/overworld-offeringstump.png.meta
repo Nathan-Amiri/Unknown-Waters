@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: b73e47828c3ffd546942387493785a5c
+guid: 810659da53c0a20468f1703e25fa6ba7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3811097287335161523
-    second: fisherman-walkright-lantern_0
+      213: -8507010658225489773
+    second: overworld-offeringstump_0
   - first:
-      213: -4018133905468848749
-    second: fisherman-walkright-lantern_1
+      213: 4538514192166073752
+    second: overworld-offeringstump_1
   - first:
-      213: 2796461967932742548
-    second: fisherman-walkright-lantern_2
+      213: 6405342782420914038
+    second: overworld-offeringstump_2
   - first:
-      213: -4785295329608895654
-    second: fisherman-walkright-lantern_3
+      213: -528890126535837905
+    second: overworld-offeringstump_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -60,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 30
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -84,7 +84,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -122,13 +122,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fisherman-walkright-lantern_0
+      name: overworld-offeringstump_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 5
-        width: 26
-        height: 33
+        x: 0
+        y: 13
+        width: 324
+        height: 246
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3be21107accb3e430800000000000000
-      internalID: 3811097287335161523
+      spriteID: 398f100e0e601f980800000000000000
+      internalID: -8507010658225489773
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fisherman-walkright-lantern_1
+      name: overworld-offeringstump_1
       rect:
         serializedVersion: 2
-        x: 49
-        y: 5
-        width: 27
-        height: 33
+        x: 319
+        y: 91
+        width: 28
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -159,20 +159,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 39583908088bc38c0800000000000000
-      internalID: -4018133905468848749
+      spriteID: 895b0289c9a0cfe30800000000000000
+      internalID: 4538514192166073752
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fisherman-walkright-lantern_2
+      name: overworld-offeringstump_2
       rect:
         serializedVersion: 2
-        x: 93
-        y: 5
-        width: 26
-        height: 33
+        x: 332
+        y: 58
+        width: 24
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,20 +181,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 49b5582f7570fc620800000000000000
-      internalID: 2796461967932742548
+      spriteID: 67f8fcad25954e850800000000000000
+      internalID: 6405342782420914038
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fisherman-walkright-lantern_3
+      name: overworld-offeringstump_3
       rect:
         serializedVersion: 2
-        x: 136
-        y: 5
-        width: 26
-        height: 33
+        x: 63
+        y: 0
+        width: 77
+        height: 77
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,8 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a5373555047379db0800000000000000
-      internalID: -4785295329608895654
+      spriteID: f27be9a6b3109a8f0800000000000000
+      internalID: -528890126535837905
       vertices: []
       indices: 
       edges: []
@@ -223,10 +223,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      fisherman-walkright-lantern_0: 3811097287335161523
-      fisherman-walkright-lantern_1: -4018133905468848749
-      fisherman-walkright-lantern_2: 2796461967932742548
-      fisherman-walkright-lantern_3: -4785295329608895654
+      overworld-offeringstump_0: -8507010658225489773
+      overworld-offeringstump_1: 4538514192166073752
+      overworld-offeringstump_2: 6405342782420914038
+      overworld-offeringstump_3: -528890126535837905
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
