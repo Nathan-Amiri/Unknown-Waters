@@ -15,7 +15,7 @@ public class LeaveHouse : EventTrigger
         if (gameManager.hasFishedToday)
             message = "Go outside?";
         else if (gameManager.currentDay == 1)
-            message = "There's a note under the door.[p]It reads, \"Beneath the stillness, something turns. Three yellow tang will soothe its sleep. [p]Offer them to the altar once the light fades. Their blood must touch the stone before you rest.\"[p]Go outside?";
+            message = "There's a note under the door.[p]It reads, \"Beneath the stillness, something turns. Three <color=#FFE36E>yellow tang</color> will soothe its sleep.[p]Offer them to the altar once the light fades. Their <color=#B22222>blood</color> must touch the stone before you rest.\"[p]Go outside?";
 
         else if (gameManager.currentDay == 2)
             message = "There's a note under the door. It reads, \"You are forbidden from looking at the tree today. Do not defy me.\"\n\nGo outside?";
