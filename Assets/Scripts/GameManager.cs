@@ -67,6 +67,10 @@ public class GameManager : MonoBehaviour
 
         if (playerAnimator != null)
             playerAnimator.SetBool("HasLantern", hasLantern);
+
+        dialogue.gameObject.SetActive(true);
+        Canvas.ForceUpdateCanvases();
+        dialogue.gameObject.SetActive(false);
     }
 
     private void Update()
