@@ -1,0 +1,910 @@
+fileFormatVersion: 2
+guid: 228c499e985486944a0febb6b839050d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2061893587981160117
+    second: Rock Path_0
+  - first:
+      213: 4669646315004932562
+    second: Rock Path_1
+  - first:
+      213: -4846809341255404347
+    second: Rock Path_2
+  - first:
+      213: -4059325272939919817
+    second: Rock Path_3
+  - first:
+      213: -2953214392821287679
+    second: Rock Path_4
+  - first:
+      213: -201574293214570257
+    second: Rock Path_5
+  - first:
+      213: 8184047949745232938
+    second: Rock Path_6
+  - first:
+      213: -5523756062201073663
+    second: Rock Path_7
+  - first:
+      213: -442879806743022491
+    second: Rock Path_8
+  - first:
+      213: 7753660922367243954
+    second: Rock Path_9
+  - first:
+      213: -6076538902054829054
+    second: Rock Path_10
+  - first:
+      213: -7328724082766803702
+    second: Rock Path_11
+  - first:
+      213: 389018501009576496
+    second: Rock Path_12
+  - first:
+      213: -8371380061263691213
+    second: Rock Path_13
+  - first:
+      213: 3022655252127506355
+    second: Rock Path_14
+  - first:
+      213: -7452251683382352006
+    second: Rock Path_15
+  - first:
+      213: 7115257542229502187
+    second: Rock Path_16
+  - first:
+      213: -4260635865568297706
+    second: Rock Path_17
+  - first:
+      213: 3998157454088872479
+    second: Rock Path_18
+  - first:
+      213: -6324068522364469791
+    second: Rock Path_19
+  - first:
+      213: -3938629483164887820
+    second: Rock Path_20
+  - first:
+      213: 1296267279761975566
+    second: Rock Path_21
+  - first:
+      213: 617961856514230148
+    second: Rock Path_22
+  - first:
+      213: 3209369619940808402
+    second: Rock Path_23
+  - first:
+      213: -461899668554506123
+    second: Rock Path_24
+  - first:
+      213: 7958620104087484834
+    second: Rock Path_25
+  - first:
+      213: -54759385278788992
+    second: Rock Path_26
+  - first:
+      213: 4483953490896592795
+    second: Rock Path_27
+  - first:
+      213: -2818318771029872826
+    second: Rock Path_28
+  - first:
+      213: 8303248511690569836
+    second: Rock Path_29
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Rock Path_0
+      rect:
+        serializedVersion: 2
+        x: 3242
+        y: 1418
+        width: 196
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b413ab3c4bea263e0800000000000000
+      internalID: -2061893587981160117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock Path_1
+      rect:
+        serializedVersion: 2
+        x: 3248
+        y: 1221
+        width: 173
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d1b498259aedc040800000000000000
+      internalID: 4669646315004932562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock Path_2
+      rect:
+        serializedVersion: 2
+        x: 3995
+        y: 1190
+        width: 49
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c43d68659cacbcb0800000000000000
+      internalID: -4846809341255404347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock Path_3
+      rect:
+        serializedVersion: 2
+        x: 4053
+        y: 1243
+        width: 33
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73686a6eb216aa7c0800000000000000
+      internalID: -4059325272939919817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock Path_4
+      rect:
+        serializedVersion: 2
+        x: 4106
+        y: 1147
+        width: 28
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 105f05218231407d0800000000000000
+      internalID: -2953214392821287679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock Path_5
+      rect:
+        serializedVersion: 2
+        x: 3472
+        y: 1118
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe858119f3dd33df0800000000000000
+      internalID: -201574293214570257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock Path_6
+      rect:
+        serializedVersion: 2
+        x: 3638
+        y: 1071
+        width: 35
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2c1455df34939170800000000000000
+      internalID: 8184047949745232938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock Path_7
+      rect:
+        serializedVersion: 2
+        x: 3906
+        y: 1141
+        width: 51
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1003896a02da753b0800000000000000
+      internalID: -5523756062201073663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock Path_8
+      rect:
+        serializedVersion: 2
+        x: 3212
+        y: 1049
+        width: 63
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56473e889239ad9f0800000000000000
+      internalID: -442879806743022491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock Path_9
+      rect:
+        serializedVersion: 2
+        x: 3508
+        y: 1069
+        width: 67
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b6f68a37898a9b60800000000000000
+      internalID: 7753660922367243954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock Path_10
+      rect:
+        serializedVersion: 2
+        x: 3557
+        y: 1021
+        width: 55
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2040e2f301ccbaba0800000000000000
+      internalID: -6076538902054829054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock Path_11
+      rect:
+        serializedVersion: 2
+        x: 3700
+        y: 1048
+        width: 50
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0d85d5a6442b4a90800000000000000
+      internalID: -7328724082766803702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock Path_12
+      rect:
+        serializedVersion: 2
+        x: 3850
+        y: 1059
+        width: 37
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0321bbbf342166500800000000000000
+      internalID: 389018501009576496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock Path_13
+      rect:
+        serializedVersion: 2
+        x: 2990
+        y: 950
+        width: 54
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33207901032e2db80800000000000000
+      internalID: -8371380061263691213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock Path_14
+      rect:
+        serializedVersion: 2
+        x: 3058
+        y: 1029
+        width: 38
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bf5785efe0a2f920800000000000000
+      internalID: 3022655252127506355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock Path_15
+      rect:
+        serializedVersion: 2
+        x: 3184
+        y: 973
+        width: 61
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a772033e398449890800000000000000
+      internalID: -7452251683382352006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock Path_16
+      rect:
+        serializedVersion: 2
+        x: 3288
+        y: 1016
+        width: 33
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be8220259097eb260800000000000000
+      internalID: 7115257542229502187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock Path_17
+      rect:
+        serializedVersion: 2
+        x: 2336
+        y: 954
+        width: 44
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61d338b014e2fd4c0800000000000000
+      internalID: -4260635865568297706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock Path_18
+      rect:
+        serializedVersion: 2
+        x: 3052
+        y: 937
+        width: 38
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f122c07750f4c7730800000000000000
+      internalID: 3998157454088872479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock Path_19
+      rect:
+        serializedVersion: 2
+        x: 2098
+        y: 885
+        width: 80
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ed7c3d6f256c38a0800000000000000
+      internalID: -6324068522364469791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock Path_20
+      rect:
+        serializedVersion: 2
+        x: 2187
+        y: 906
+        width: 30
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f493125a5d2759c0800000000000000
+      internalID: -3938629483164887820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock Path_21
+      rect:
+        serializedVersion: 2
+        x: 2828
+        y: 846
+        width: 46
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e09ac2819344df110800000000000000
+      internalID: 1296267279761975566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock Path_22
+      rect:
+        serializedVersion: 2
+        x: 2885
+        y: 889
+        width: 27
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 487854ec801739800800000000000000
+      internalID: 617961856514230148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock Path_23
+      rect:
+        serializedVersion: 2
+        x: 2037
+        y: 863
+        width: 39
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d690855aa8f98c20800000000000000
+      internalID: 3209369619940808402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock Path_24
+      rect:
+        serializedVersion: 2
+        x: 2487
+        y: 790
+        width: 46
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57020fdd2b00799f0800000000000000
+      internalID: -461899668554506123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock Path_25
+      rect:
+        serializedVersion: 2
+        x: 2555
+        y: 859
+        width: 27
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a9ba6e61d2b27e60800000000000000
+      internalID: 7958620104087484834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock Path_26
+      rect:
+        serializedVersion: 2
+        x: 2075
+        y: 795
+        width: 89
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08ac65411a47d3ff0800000000000000
+      internalID: -54759385278788992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock Path_27
+      rect:
+        serializedVersion: 2
+        x: 2150
+        y: 760
+        width: 47
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9f934661f33a3e30800000000000000
+      internalID: 4483953490896592795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock Path_28
+      rect:
+        serializedVersion: 2
+        x: 2217
+        y: 779
+        width: 50
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64fe2f4820253e8d0800000000000000
+      internalID: -2818318771029872826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock Path_29
+      rect:
+        serializedVersion: 2
+        x: 2541
+        y: 769
+        width: 39
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c687b1567801b3370800000000000000
+      internalID: 8303248511690569836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Rock Path_0: -2061893587981160117
+      Rock Path_1: 4669646315004932562
+      Rock Path_10: -6076538902054829054
+      Rock Path_11: -7328724082766803702
+      Rock Path_12: 389018501009576496
+      Rock Path_13: -8371380061263691213
+      Rock Path_14: 3022655252127506355
+      Rock Path_15: -7452251683382352006
+      Rock Path_16: 7115257542229502187
+      Rock Path_17: -4260635865568297706
+      Rock Path_18: 3998157454088872479
+      Rock Path_19: -6324068522364469791
+      Rock Path_2: -4846809341255404347
+      Rock Path_20: -3938629483164887820
+      Rock Path_21: 1296267279761975566
+      Rock Path_22: 617961856514230148
+      Rock Path_23: 3209369619940808402
+      Rock Path_24: -461899668554506123
+      Rock Path_25: 7958620104087484834
+      Rock Path_26: -54759385278788992
+      Rock Path_27: 4483953490896592795
+      Rock Path_28: -2818318771029872826
+      Rock Path_29: 8303248511690569836
+      Rock Path_3: -4059325272939919817
+      Rock Path_4: -2953214392821287679
+      Rock Path_5: -201574293214570257
+      Rock Path_6: 8184047949745232938
+      Rock Path_7: -5523756062201073663
+      Rock Path_8: -442879806743022491
+      Rock Path_9: 7753660922367243954
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

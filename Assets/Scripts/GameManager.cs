@@ -54,8 +54,6 @@ public class GameManager : MonoBehaviour
 
     public bool isStunned;
 
-    //private bool eventOpen = false;
-
 
     void Start()
     {
@@ -128,11 +126,11 @@ public class GameManager : MonoBehaviour
         {
             dialogue.ShowChoice(pages, new[] { "Yes", "No" }, idx =>
             {
-                // Run your existing logic
+                // YesButton logic
                 if (idx == 0) YesButton();
                 else NoButton();
 
-                // Safety net: ALWAYS end the event after a selection
+                //Always ends the event after a selection
                 EndEvent();
             });
         }
@@ -140,8 +138,7 @@ public class GameManager : MonoBehaviour
 
     public void EndEvent()
     {
-        //eventOpen = false;
-        ToggleStun(false);                // <- re-enable player input here
+        ToggleStun(false);
         choiceEventName = null;
     }
     public void NoButton()

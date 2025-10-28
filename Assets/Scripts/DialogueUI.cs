@@ -8,21 +8,18 @@ using UnityEngine.UI;
 public class DialogueUI : MonoBehaviour
 {
     [Header("Hook up your existing objects")]
-    [SerializeField] private GameObject root;            // EventMessage
-    [SerializeField] private TMP_Text messageText;       // MessageText
-    [SerializeField] private RectTransform yesRow;       // Yes object (its parent container)
-    [SerializeField] private TMP_Text yesLabel;          // TMP under Yes
-    [SerializeField] private RectTransform noRow;        // No object (its parent container)
-    [SerializeField] private TMP_Text noLabel;           // TMP under No
+    [SerializeField] private GameObject root;
+    [SerializeField] private TMP_Text messageText;
+    [SerializeField] private RectTransform yesRow;
+    [SerializeField] private TMP_Text yesLabel;
+    [SerializeField] private RectTransform noRow;
+    [SerializeField] private TMP_Text noLabel;
     [SerializeField] private Image cursorYes;
-    [SerializeField] private Image cursorNo;      // Small Image that acts as the selector
+    [SerializeField] private Image cursorNo;
 
     [Header("Typing")]
     [SerializeField] private float charsPerSecond = 45f;
     [SerializeField] private float fastForwardMultiplier = 4f;
-
-    [Header("Cursor offset from the left of a row")]
-    [SerializeField] private Vector2 cursorOffset = new Vector2(-24, 0);
 
     public bool IsOpen { get; private set; }
 
@@ -49,7 +46,7 @@ public class DialogueUI : MonoBehaviour
     {
         if (!IsOpen) return;
 
-        // navigate choices when visible (HORIZONTAL)
+        // navigate choices when visible - horiztonal
         if (hasChoices && pageFullyShown)
         {
             if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) { selectedIndex = Mathf.Max(0, selectedIndex - 1); UpdateChoiceCursors(); }
@@ -86,7 +83,6 @@ public class DialogueUI : MonoBehaviour
         }
     }
 
-    // Public API
     public void ShowMessage(IEnumerable<string> messagePages, Action onFinished)
     {
         Prepare(messagePages);
