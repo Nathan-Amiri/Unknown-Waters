@@ -156,7 +156,7 @@ public class FishingMinigame : MonoBehaviour
         {
             if (hookedItem.TryGetComponent(out Fish fish))
             {
-                Debug.Log("You caught a fish!");
+                gameManager.hasFish = true;
                 StopCoroutine(fishStruggleRoutine);
             }
             else

@@ -18,8 +18,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject yesButton;
     [SerializeField] private GameObject noButton;
 
+    [SerializeField] private GameObject nightOverlay;
+
+    [SerializeField] private GameObject altarFish;
+
     [SerializeField] private List<GameObject> fishingDayLayouts = new();
 
+    [SerializeField] private LanternFlicker lanternFlicker;
 
     //ANIMATION
     [SerializeField] private GameObject lanternSpr;
@@ -43,11 +48,11 @@ public class GameManager : MonoBehaviour
     [NonSerialized] public int obedience;
     [NonSerialized] public bool hasLantern;
     [NonSerialized] public bool hasFishedToday;
+    [NonSerialized] public bool hasFish;
 
     private bool movingVertically;
 
     private bool isStunned;
-
 
     void Start()
     {
@@ -176,6 +181,15 @@ public class GameManager : MonoBehaviour
 
             currentDay += 1;
             hasFishedToday = false;
+            altarFish.SetActive(false);
+            nightOverlay.SetActive(false);
+            lanternFlicker.baseAlpha -= .35f;
+            lanternFlicker.transform.localScale = new Vector2(1, 1);
+        }
+        else if (choiceEventName == "Altar")
+        {
+            hasFish = false;
+            altarFish.SetActive(true);
         }
 
         EndEvent();
@@ -196,11 +210,13 @@ public class GameManager : MonoBehaviour
     }
     public void StopFishing() // Called by FishingMinigame
     {
-        // CHANGE TO NIGHT LIGHTING
-
         playerRB.transform.position = stopFishingPosition;
 
         isStunned = false;
+
+        nightOverlay.SetActive(true);
+        lanternFlicker.baseAlpha += .35f;
+        lanternFlicker.transform.localScale = new Vector2(1.5f, 1.5f);
 
         overworldToggle.SetActive(true);
         fishingToggle.SetActive(false);

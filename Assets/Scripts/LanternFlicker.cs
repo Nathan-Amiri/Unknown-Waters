@@ -3,7 +3,7 @@ using UnityEngine;
 public class LanternFlicker : MonoBehaviour
 {
     SpriteRenderer sr;
-    float baseAlpha;
+    public float baseAlpha;
 
     void Awake()
     {

@@ -7,7 +7,7 @@ public class EventTrigger : MonoBehaviour
     private void Start()
     {
         // Uncomment this when we have sprites in the game
-        //GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<SpriteRenderer>().enabled = false;
 
         gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
     }

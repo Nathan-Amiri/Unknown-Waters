@@ -54,11 +54,20 @@ TagManager:
   - name: Hook
     uniqueID: 3018760617
     locked: 0
+  - name: TreeBackground
+    uniqueID: 1135241431
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: TreeForeground
+    uniqueID: 1014613391
+    locked: 0
   - name: Fog
     uniqueID: 2961179411
+    locked: 0
+  - name: NightOverlay
+    uniqueID: 327009561
     locked: 0
   - name: UI
     uniqueID: 3595334187

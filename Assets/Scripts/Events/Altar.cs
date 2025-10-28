@@ -1,16 +1,12 @@
 using UnityEngine;
 
-public class Altar : MonoBehaviour
+public class Altar : EventTrigger
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected override void EventTriggered()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (!gameManager.hasFish)
+            gameManager.TriggerEvent("You have nothing to place here");
+        else
+            gameManager.TriggerEvent("Place fish on the stump?", "Altar");
     }
 }
