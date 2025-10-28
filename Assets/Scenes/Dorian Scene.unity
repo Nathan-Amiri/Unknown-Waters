@@ -4381,7 +4381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8120372398021004463, guid: 41c5cdadc6aebfb409f7d99a2a3ebfac, type: 3}
       propertyPath: m_FlipX
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8120372398021004463, guid: 41c5cdadc6aebfb409f7d99a2a3ebfac, type: 3}
       propertyPath: m_Sprite
@@ -10582,11 +10582,43 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1161338446690101397, guid: e40616fd5af839445a013a5066c24568, type: 3}
       propertyPath: hookEndYOffset
-      value: 0.38
+      value: 0.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 4907691291037778516, guid: e40616fd5af839445a013a5066c24568, type: 3}
+      propertyPath: m_Size.x
+      value: 0.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 4907691291037778516, guid: e40616fd5af839445a013a5066c24568, type: 3}
+      propertyPath: m_Size.y
+      value: 0.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 4907691291037778516, guid: e40616fd5af839445a013a5066c24568, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2c7ce089daea3fb4c9e230cef00a5907, type: 3}
+    - target: {fileID: 4907691291037778516, guid: e40616fd5af839445a013a5066c24568, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4907691291037778516, guid: e40616fd5af839445a013a5066c24568, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5371077728059327063, guid: e40616fd5af839445a013a5066c24568, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6316710996219901716, guid: e40616fd5af839445a013a5066c24568, type: 3}
       propertyPath: m_Name
       value: Hook
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482819357500588262, guid: e40616fd5af839445a013a5066c24568, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2c7ce089daea3fb4c9e230cef00a5907, type: 3}
+    - target: {fileID: 6482819357500588262, guid: e40616fd5af839445a013a5066c24568, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7558254592928751188, guid: e40616fd5af839445a013a5066c24568, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10629,8 +10661,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8549662733465955764, guid: e40616fd5af839445a013a5066c24568, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8549662733465955764, guid: e40616fd5af839445a013a5066c24568, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8549662733465955764, guid: e40616fd5af839445a013a5066c24568, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.53
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 8715431083449239056, guid: e40616fd5af839445a013a5066c24568, type: 3}
       propertyPath: clockText
@@ -22445,7 +22485,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8120372398021004463, guid: 41c5cdadc6aebfb409f7d99a2a3ebfac, type: 3}
       propertyPath: m_FlipX
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8120372398021004463, guid: 41c5cdadc6aebfb409f7d99a2a3ebfac, type: 3}
       propertyPath: m_Sprite
