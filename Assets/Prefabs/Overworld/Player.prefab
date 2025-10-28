@@ -162,7 +162,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 2
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -360,7 +360,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -4066826747627448837, guid: 2f7584475aff3e8469b568504e18b1a7, type: 3}
   m_Color: {r: 1, g: 0.7646003, b: 0, a: 0.2627451}
   m_FlipX: 0
@@ -384,3 +384,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca558b97f3b34514eacf4de36bd4845f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LanternFlicker
+  baseAlpha: 0

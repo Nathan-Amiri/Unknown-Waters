@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: a034c236fd3e5694a85494280e851345
+guid: 169afa4bb7d85f7439500a5611a3f0dc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7860210611555324325
-    second: fisherman-walkleft-lantern_0
+      213: 7858980336673299937
+    second: trash_0
   - first:
-      213: 3499808609797486156
-    second: fisherman-walkleft-lantern_1
+      213: -4254139554137441018
+    second: trash_1
   - first:
-      213: -2749823839497921418
-    second: fisherman-walkleft-lantern_2
+      213: -6160856761786740092
+    second: trash_2
   - first:
-      213: 3454039518669995769
-    second: fisherman-walkleft-lantern_3
+      213: -6345823308526285994
+    second: trash_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -60,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 26
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -122,13 +122,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fisherman-walkleft-lantern_0
+      name: trash_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 5
-        width: 26
-        height: 33
+        x: 3
+        y: 2
+        width: 43
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5a1d281f7e3151d60800000000000000
-      internalID: 7860210611555324325
+      spriteID: 1ed11304af4b01d60800000000000000
+      internalID: 7858980336673299937
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fisherman-walkleft-lantern_1
+      name: trash_1
       rect:
         serializedVersion: 2
-        x: 50
-        y: 5
-        width: 26
-        height: 33
+        x: 45
+        y: 2
+        width: 44
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -159,20 +159,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c4635d84361d19030800000000000000
-      internalID: 3499808609797486156
+      spriteID: 60df2ba6d9246f4c0800000000000000
+      internalID: -4254139554137441018
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fisherman-walkleft-lantern_2
+      name: trash_2
       rect:
         serializedVersion: 2
-        x: 93
-        y: 5
-        width: 27
-        height: 33
+        x: 92
+        y: 3
+        width: 42
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,20 +181,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 67c53d389c9a6d9d0800000000000000
-      internalID: -2749823839497921418
+      spriteID: 48253a1ba6d308aa0800000000000000
+      internalID: -6160856761786740092
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fisherman-walkleft-lantern_3
+      name: trash_3
       rect:
         serializedVersion: 2
-        x: 136
-        y: 5
-        width: 26
-        height: 33
+        x: 142
+        y: 3
+        width: 30
+        height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,8 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9fe7c7654a63fef20800000000000000
-      internalID: 3454039518669995769
+      spriteID: 65b85ef825b1fe7a0800000000000000
+      internalID: -6345823308526285994
       vertices: []
       indices: 
       edges: []
@@ -223,10 +223,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      fisherman-walkleft-lantern_0: 7860210611555324325
-      fisherman-walkleft-lantern_1: 3499808609797486156
-      fisherman-walkleft-lantern_2: -2749823839497921418
-      fisherman-walkleft-lantern_3: 3454039518669995769
+      trash_0: 7858980336673299937
+      trash_1: -4254139554137441018
+      trash_2: -6160856761786740092
+      trash_3: -6345823308526285994
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

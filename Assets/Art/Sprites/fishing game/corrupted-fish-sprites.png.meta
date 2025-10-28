@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: a034c236fd3e5694a85494280e851345
+guid: cfd770f1afa2c3446ae94ff9c3cab0c0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7860210611555324325
-    second: fisherman-walkleft-lantern_0
+      213: 7429196378116872806
+    second: corrupted-fish-sprites_0
   - first:
-      213: 3499808609797486156
-    second: fisherman-walkleft-lantern_1
+      213: 8423771815783334121
+    second: corrupted-fish-sprites_1
   - first:
-      213: -2749823839497921418
-    second: fisherman-walkleft-lantern_2
+      213: -7252955977387837919
+    second: corrupted-fish-sprites_2
   - first:
-      213: 3454039518669995769
-    second: fisherman-walkleft-lantern_3
+      213: 7796464629623415938
+    second: corrupted-fish-sprites_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -60,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 26
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -122,13 +122,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fisherman-walkleft-lantern_0
+      name: corrupted-fish-sprites_0
       rect:
         serializedVersion: 2
         x: 7
-        y: 5
-        width: 26
-        height: 33
+        y: 52
+        width: 60
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5a1d281f7e3151d60800000000000000
-      internalID: 7860210611555324325
+      spriteID: 66a564c8ebec91760800000000000000
+      internalID: 7429196378116872806
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fisherman-walkleft-lantern_1
+      name: corrupted-fish-sprites_1
       rect:
         serializedVersion: 2
-        x: 50
-        y: 5
-        width: 26
-        height: 33
+        x: 77
+        y: 50
+        width: 62
+        height: 49
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -159,20 +159,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c4635d84361d19030800000000000000
-      internalID: 3499808609797486156
+      spriteID: 9e086bcd5df37e470800000000000000
+      internalID: 8423771815783334121
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fisherman-walkleft-lantern_2
+      name: corrupted-fish-sprites_2
       rect:
         serializedVersion: 2
-        x: 93
-        y: 5
-        width: 27
-        height: 33
+        x: 153
+        y: 55
+        width: 88
+        height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,20 +181,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 67c53d389c9a6d9d0800000000000000
-      internalID: -2749823839497921418
+      spriteID: 126704467f2585b90800000000000000
+      internalID: -7252955977387837919
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fisherman-walkleft-lantern_3
+      name: corrupted-fish-sprites_3
       rect:
         serializedVersion: 2
-        x: 136
-        y: 5
-        width: 26
-        height: 33
+        x: 251
+        y: 50
+        width: 93
+        height: 46
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,8 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9fe7c7654a63fef20800000000000000
-      internalID: 3454039518669995769
+      spriteID: 284e990f54b923c60800000000000000
+      internalID: 7796464629623415938
       vertices: []
       indices: 
       edges: []
@@ -223,10 +223,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      fisherman-walkleft-lantern_0: 7860210611555324325
-      fisherman-walkleft-lantern_1: 3499808609797486156
-      fisherman-walkleft-lantern_2: -2749823839497921418
-      fisherman-walkleft-lantern_3: 3454039518669995769
+      corrupted-fish-sprites_0: 7429196378116872806
+      corrupted-fish-sprites_1: 8423771815783334121
+      corrupted-fish-sprites_2: -7252955977387837919
+      corrupted-fish-sprites_3: 7796464629623415938
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

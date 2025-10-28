@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: a034c236fd3e5694a85494280e851345
+guid: 895bf037ca9a0cc43bbd37a240e0c6eb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7860210611555324325
-    second: fisherman-walkleft-lantern_0
-  - first:
-      213: 3499808609797486156
-    second: fisherman-walkleft-lantern_1
-  - first:
-      213: -2749823839497921418
-    second: fisherman-walkleft-lantern_2
-  - first:
-      213: 3454039518669995769
-    second: fisherman-walkleft-lantern_3
+      213: -49532090776259237
+    second: hook_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -60,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 26
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -122,89 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fisherman-walkleft-lantern_0
+      name: hook_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 5
-        width: 26
-        height: 33
+        x: 23
+        y: 15
+        width: 133
+        height: 177
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5a1d281f7e3151d60800000000000000
-      internalID: 7860210611555324325
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fisherman-walkleft-lantern_1
-      rect:
-        serializedVersion: 2
-        x: 50
-        y: 5
-        width: 26
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c4635d84361d19030800000000000000
-      internalID: 3499808609797486156
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fisherman-walkleft-lantern_2
-      rect:
-        serializedVersion: 2
-        x: 93
-        y: 5
-        width: 27
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 67c53d389c9a6d9d0800000000000000
-      internalID: -2749823839497921418
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fisherman-walkleft-lantern_3
-      rect:
-        serializedVersion: 2
-        x: 136
-        y: 5
-        width: 26
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9fe7c7654a63fef20800000000000000
-      internalID: 3454039518669995769
+      spriteID: b557c4c63d6005ff0800000000000000
+      internalID: -49532090776259237
       vertices: []
       indices: 
       edges: []
@@ -213,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: e55d1ee93ea04864281763d27dd1eebc
     internalID: 0
     vertices: []
     indices: 
@@ -223,10 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      fisherman-walkleft-lantern_0: 7860210611555324325
-      fisherman-walkleft-lantern_1: 3499808609797486156
-      fisherman-walkleft-lantern_2: -2749823839497921418
-      fisherman-walkleft-lantern_3: 3454039518669995769
+      hook_0: -49532090776259237
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
