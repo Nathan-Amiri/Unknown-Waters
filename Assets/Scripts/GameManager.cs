@@ -12,9 +12,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform overworldCamera;
     [SerializeField] private Rigidbody2D playerRB;
 
+    [SerializeField] private DialogueUI dialogue;
     [SerializeField] private GameObject eventMessageScreen;
     [SerializeField] private TMP_Text eventMessageText;
-    [SerializeField] private GameObject okayButton;
     [SerializeField] private GameObject yesButton;
     [SerializeField] private GameObject noButton;
 
@@ -52,7 +52,10 @@ public class GameManager : MonoBehaviour
 
     private bool movingVertically;
 
-    private bool isStunned;
+    public bool isStunned;
+
+    //private bool eventOpen = false;
+
 
     void Start()
     {
@@ -101,29 +104,41 @@ public class GameManager : MonoBehaviour
         playerRB.linearVelocity = Vector2.zero;
     }
 
-    public void TriggerEvent(string eventMessage, string newChoiceEventName = default)
-    {
-        choiceEventName = newChoiceEventName;
 
+    public void TriggerEvent(string eventMessage, string newChoiceEventName = null)
+    {
+        //eventOpen = true;
+        choiceEventName = newChoiceEventName;
         ToggleStun(true);
 
-        eventMessageText.text = eventMessage;
+        string[] pages = eventMessage.Split(new string[] { "[p]" }, StringSplitOptions.None);
 
-        okayButton.SetActive(choiceEventName == default);
-        yesButton.SetActive(choiceEventName != default);
-        noButton.SetActive(choiceEventName != default);
+        if (string.IsNullOrEmpty(choiceEventName))
+        {
+            dialogue.ShowMessage(pages, () =>
+            {
+                EndEvent();   // always un-stun after a plain message
+            });
+        }
+        else
+        {
+            dialogue.ShowChoice(pages, new[] { "Yes", "No" }, idx =>
+            {
+                // Run your existing logic
+                if (idx == 0) YesButton();
+                else NoButton();
 
-        eventMessageScreen.SetActive(true);
+                // Safety net: ALWAYS end the event after a selection
+                EndEvent();
+            });
+        }
     }
+
     public void EndEvent()
     {
-        ToggleStun(false);
-        eventMessageScreen.SetActive(false);
-        choiceEventName = default;
-    }
-    public void OkayButton()
-    {
-        EndEvent();
+        //eventOpen = false;
+        ToggleStun(false);                // <- re-enable player input here
+        choiceEventName = null;
     }
     public void NoButton()
     {
@@ -212,7 +227,7 @@ public class GameManager : MonoBehaviour
     {
         playerRB.transform.position = stopFishingPosition;
 
-        isStunned = false;
+        ToggleStun(false);
 
         nightOverlay.SetActive(true);
         lanternFlicker.baseAlpha += .35f;
