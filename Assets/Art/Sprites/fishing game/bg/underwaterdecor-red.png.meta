@@ -58,7 +58,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -96,7 +96,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -139,10 +139,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 103
+        width: 148
         height: 55
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -156,28 +156,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: underwaterdecor-red_1
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 4
-        width: 29
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4ab498f6ccfb37240800000000000000
-      internalID: 4788381713590471588
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: underwaterdecor-red_2
       rect:
         serializedVersion: 2
@@ -186,7 +164,7 @@ TextureImporter:
         width: 145
         height: 135
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -208,7 +186,7 @@ TextureImporter:
         width: 76
         height: 58
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -226,11 +204,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 426
-        y: 12
-        width: 192
-        height: 250
+        y: 7
+        width: 202
+        height: 255
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -244,59 +222,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: underwaterdecor-red_5
-      rect:
-        serializedVersion: 2
-        x: 564
-        y: 6
-        width: 65
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 178ffe859c64ba8a0800000000000000
-      internalID: -6292858223725643663
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: underwaterdecor-red_6
-      rect:
-        serializedVersion: 2
-        x: 664
-        y: 9
-        width: 62
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ffac9fe7a79258610800000000000000
-      internalID: 1622748846829980415
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: underwaterdecor-red_7
       rect:
         serializedVersion: 2
-        x: 738
-        y: 2
-        width: 86
-        height: 79
+        x: 662
+        y: 8
+        width: 162
+        height: 73
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -313,7 +247,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: e06628b4453210b42b0eda994c9694d2
     internalID: 0
     vertices: []
     indices: 
