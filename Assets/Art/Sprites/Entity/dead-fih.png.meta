@@ -134,7 +134,7 @@ TextureImporter:
       name: dead-fih_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 238
         y: 17
         width: 745
         height: 531
@@ -156,7 +156,7 @@ TextureImporter:
       name: dead-fih_1
       rect:
         serializedVersion: 2
-        x: 706
+        x: 247
         y: 380
         width: 30
         height: 24
@@ -178,10 +178,10 @@ TextureImporter:
       name: dead-fih_2
       rect:
         serializedVersion: 2
-        x: 730
-        y: 316
-        width: 33
-        height: 38
+        x: 190
+        y: 332
+        width: 19
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,7 +200,7 @@ TextureImporter:
       name: dead-fih_3
       rect:
         serializedVersion: 2
-        x: 768
+        x: 206
         y: 323
         width: 9
         height: 16
@@ -222,10 +222,10 @@ TextureImporter:
       name: dead-fih_4
       rect:
         serializedVersion: 2
-        x: 774
-        y: 332
-        width: 19
-        height: 16
+        x: 220
+        y: 316
+        width: 33
+        height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -244,10 +244,10 @@ TextureImporter:
       name: dead-fih_5
       rect:
         serializedVersion: 2
-        x: 730
-        y: 283
-        width: 25
-        height: 16
+        x: 156
+        y: 289
+        width: 40
+        height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -266,10 +266,10 @@ TextureImporter:
       name: dead-fih_6
       rect:
         serializedVersion: 2
-        x: 787
-        y: 289
-        width: 40
-        height: 17
+        x: 228
+        y: 283
+        width: 25
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
