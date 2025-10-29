@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ScreenShake screenShake;
 
     //TILES
-    [SerializeField] private Tilemap overworldTilemap;
+    [SerializeField] private Tilemap fishingTilemap;
     [SerializeField] private TileBase[] normalTiles;
     [SerializeField] private TileBase[] redTiles;
 
@@ -314,12 +314,12 @@ public class GameManager : MonoBehaviour
         if (currentDay <= 3)
         {
             for (int i = 0; i < normalTiles.Length; i++)
-                overworldTilemap.SwapTile(redTiles[i], normalTiles[i]);
+                fishingTilemap.SwapTile(redTiles[i], normalTiles[i]);
         }
         else
         {
             for (int i = 0; i < normalTiles.Length; i++)
-                overworldTilemap.SwapTile(normalTiles[i], redTiles[i]);
+                fishingTilemap.SwapTile(normalTiles[i], redTiles[i]);
         }
     }
 

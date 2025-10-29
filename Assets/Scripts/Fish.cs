@@ -19,6 +19,9 @@ public class Fish : MonoBehaviour
     private Vector2 endPosition;
     private float swimTime;
 
+    public bool isHooked; // minimal flag
+
+
     private void Awake()
     {
         destinationSR.enabled = false;
@@ -36,6 +39,9 @@ public class Fish : MonoBehaviour
 
     private void Update()
     {
+
+        if (isHooked) { rb.linearVelocity = Vector2.zero; return; }
+
         // Sprite flip
         if (rb.linearVelocity.x > 0)
             sr.flipX = true;

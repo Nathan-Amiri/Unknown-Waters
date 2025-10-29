@@ -114,6 +114,15 @@ public class FishingMinigame : MonoBehaviour
         if (transform.position.y < -yLimit)
             transform.position = new(transform.position.x, -yLimit);
 
+        // Prevent hook from getting stuck at the surface
+        if (transform.position.y >= 0f)
+        {
+            if (!reelInput)
+                hookRB.position = new Vector2(hookRB.position.x, -0.02f); // small nudge down when not reeling
+            else
+                hookRB.linearVelocity = new Vector2(hookRB.linearVelocity.x, 0f); // stop pushing into the clamp
+        }
+
         // Depth meter
         if (transform.position.y == 0)
             depthMeterBar.transform.localPosition = new(0, depthMeterBack.rect.height / 2);
@@ -205,13 +214,14 @@ public class FishingMinigame : MonoBehaviour
             var fish = col.GetComponent<Fish>();
             fish.StopSwimming();
 
-            hookedItem.parent = transform;
-            hookedItem.localPosition = new Vector3(0, -1.5f, 0f);
-
-            // Rotate correctly depending on facing direction
+            fish.isHooked = true;                          // freeze fish logic
             var sr = hookedItem.GetComponentInChildren<SpriteRenderer>();
-            float zRot = (sr != null && sr.flipX) ? -90f : 90f;
-            hookedItem.rotation = Quaternion.Euler(0, 0, zRot);
+            if (sr) { sr.flipX = false; sr.flipY = false; } // uncheck Flip X/Y
+
+            hookedItem.parent = transform;
+            hookedItem.localPosition = new Vector3(0f, -1.5f, 0f);
+            hookedItem.localRotation = Quaternion.Euler(0f, 0f, -90f); // face upward
+
 
             fishStruggleRoutine = StartCoroutine(FishStruggle());
         }
