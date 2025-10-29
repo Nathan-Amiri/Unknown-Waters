@@ -76,7 +76,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         freeCamera = true;
-        screenShake.StartShake(3, .5f);
 
         if (lanternSpr != null)
             lanternSpr.SetActive(!hasLantern);
