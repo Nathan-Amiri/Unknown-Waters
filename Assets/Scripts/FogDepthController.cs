@@ -5,10 +5,10 @@ public class FogDepthController : MonoBehaviour
     [SerializeField] private FishingMinigame fishingMinigame;
     [SerializeField] private SpriteRenderer fogRenderer;
 
-    private float minAlpha = 200f / 255f; // converted to normalized alpha
+    private float minAlpha = 210f / 255f; // converted to normalized alpha
     private float maxAlpha = 255f / 255f;
     private float topY = 0f;              // surface
-    private float bottomY = -39f;         // max depth (matches FishingMinigame)
+    private float bottomY = -35f;         // max depth (matches FishingMinigame)
 
     private void Update()
     {
