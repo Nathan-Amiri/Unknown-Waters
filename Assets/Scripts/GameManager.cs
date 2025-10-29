@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject fishingToggle;
 
     [SerializeField] private Transform overworldCamera;
+    [SerializeField] private SpriteRenderer playerSR;
     [SerializeField] private Rigidbody2D playerRB;
 
     [SerializeField] private DialogueUI dialogue;
@@ -21,10 +23,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject nightOverlay;
 
     [SerializeField] private GameObject altarFish;
+    [SerializeField] private GameObject layInBed;
 
     [SerializeField] private List<GameObject> fishingDayLayouts = new();
 
     [SerializeField] private LanternFlicker lanternFlicker;
+    [SerializeField] private Fade fade;
+    [SerializeField] private SpriteRenderer roomSR;
 
     //ANIMATION
     [SerializeField] private GameObject lanternSpr;
@@ -193,14 +198,7 @@ public class GameManager : MonoBehaviour
         }
         else if (choiceEventName == "Bed")
         {
-            // CHANGE TO DAY LIGHTING
-
-            currentDay += 1;
-            hasFishedToday = false;
-            altarFish.SetActive(false);
-            nightOverlay.SetActive(false);
-            lanternFlicker.baseAlpha -= .35f;
-            lanternFlicker.transform.localScale = new Vector2(1, 1);
+            StartCoroutine(Bedtime());
         }
         else if (choiceEventName == "Altar")
         {
@@ -212,6 +210,13 @@ public class GameManager : MonoBehaviour
     }
 
     private void StartFishing()
+    {
+        ToggleStun(true);
+        fade.StartFade();
+
+        Invoke(nameof(FishTime), .9f);
+    }
+    private void FishTime()
     {
         hasFishedToday = true;
 
@@ -226,6 +231,12 @@ public class GameManager : MonoBehaviour
     }
     public void StopFishing() // Called by FishingMinigame
     {
+        fade.StartFade();
+
+        Invoke(nameof(NoFishTime), .9f);
+    }
+    private void NoFishTime()
+    {
         playerRB.transform.position = stopFishingPosition;
 
         ToggleStun(false);
@@ -236,5 +247,45 @@ public class GameManager : MonoBehaviour
 
         overworldToggle.SetActive(true);
         fishingToggle.SetActive(false);
+    }
+
+    private IEnumerator Bedtime()
+    {
+        ToggleStun(true);
+        playerRB.transform.position = new(-50.5f, 2.5f);
+        playerSR.enabled = false;
+        layInBed.SetActive(true);
+
+        float alpha = 1;
+        while (alpha > 0)
+        {
+            alpha -= Time.deltaTime * 3;
+            if (alpha < 0) alpha = 0;
+
+            Color newColor = Color.white;
+            newColor.a = alpha;
+            roomSR.color = newColor;
+
+            yield return null;
+        }
+
+        // Dream event
+        yield return new WaitForSeconds(3);
+
+        fade.StartFade();
+        yield return new WaitForSeconds(.9f);
+
+        roomSR.color = Color.white;
+
+        currentDay += 1;
+        hasFishedToday = false;
+        altarFish.SetActive(false);
+        nightOverlay.SetActive(false);
+        lanternFlicker.baseAlpha -= .35f;
+        lanternFlicker.transform.localScale = new Vector2(1, 1);
+
+        layInBed.SetActive(false);
+        playerSR.enabled = true;
+        ToggleStun(false);
     }
 }
