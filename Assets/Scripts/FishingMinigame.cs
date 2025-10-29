@@ -24,6 +24,9 @@ public class FishingMinigame : MonoBehaviour
     public float reelSpeed;
     public float moveSpeed;
 
+    private const float surfaceBuffer = 0.05f; // keep hook slightly below surface
+
+
     public float fishStrugglePause; // The duration of the wait in between struggling
     public float fishStruggleDuration; // The duration of the struggle
     public float fishStruggleVariance; // The amount the above two variables can change by
@@ -109,18 +112,19 @@ public class FishingMinigame : MonoBehaviour
             transform.position = new(xLimit, transform.position.y);
         if (transform.position.x < -xLimit)
             transform.position = new(-xLimit, transform.position.y);
-        if (transform.position.y > 0)
-            transform.position = new(transform.position.x, 0);
+        // keep a tiny gap under the surface instead of exact 0
+        if (transform.position.y > -surfaceBuffer)
+            transform.position = new(transform.position.x, -surfaceBuffer);
         if (transform.position.y < -yLimit)
             transform.position = new(transform.position.x, -yLimit);
 
         // Prevent hook from getting stuck at the surface
-        if (transform.position.y >= 0f)
+        if (transform.position.y >= -surfaceBuffer)
         {
             if (!reelInput)
-                hookRB.position = new Vector2(hookRB.position.x, -0.02f); // small nudge down when not reeling
+                hookRB.position = new Vector2(hookRB.position.x, -surfaceBuffer - 0.02f); // nudge down
             else
-                hookRB.linearVelocity = new Vector2(hookRB.linearVelocity.x, 0f); // stop pushing into the clamp
+                hookRB.linearVelocity = new Vector2(hookRB.linearVelocity.x, 0f); // stop pushing up
         }
 
         // Depth meter
