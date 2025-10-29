@@ -66,13 +66,10 @@ TagManager:
   - name: Fog
     uniqueID: 2961179411
     locked: 0
-  - name: NightOverlay
-    uniqueID: 327009561
-    locked: 0
   - name: UI
     uniqueID: 3595334187
     locked: 0
-  - name: Fade
+  - name: Overlays
     uniqueID: 4191407531
     locked: 0
   m_RenderingLayers:

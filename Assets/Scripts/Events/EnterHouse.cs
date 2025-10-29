@@ -9,6 +9,11 @@ public class EnterHouse : EventTrigger
             gameManager.TriggerEvent("You don't feel sleepy yet.");
             return;
         }
+        if (!gameManager.hasFish)
+        {
+            gameManager.TriggerEvent("It hungers for the fish you carry. You must feed it before you can enter.");
+            return;
+        }
 
         string message = string.Empty;
 

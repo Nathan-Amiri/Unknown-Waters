@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform overworldCamera;
     [SerializeField] private SpriteRenderer playerSR;
     [SerializeField] private Rigidbody2D playerRB;
+    [SerializeField] private Collider2D playerCol;
 
     [SerializeField] private DialogueUI dialogue;
     [SerializeField] private GameObject eventMessageScreen;
@@ -22,6 +24,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject nightOverlay;
 
+    [SerializeField] private GameObject instantBlack;
+
     [SerializeField] private GameObject altarFish;
     [SerializeField] private GameObject layInBed;
 
@@ -30,6 +34,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private LanternFlicker lanternFlicker;
     [SerializeField] private Fade fade;
     [SerializeField] private SpriteRenderer roomSR;
+
+    [SerializeField] private GameObject fishingTrigger;
+    [SerializeField] private GameObject pathTrigger;
+
+    [SerializeField] private ScreenShake screenShake;
 
     //ANIMATION
     [SerializeField] private GameObject lanternSpr;
@@ -49,8 +58,8 @@ public class GameManager : MonoBehaviour
 
     // Choice event variables:
     private string choiceEventName;
-    [NonSerialized] public int currentDay = 1;
-    [NonSerialized] public int obedience;
+    [NonSerialized] public int currentDay = 5;//1;
+    [NonSerialized] public int obedience = -10;
     [NonSerialized] public bool hasLantern;
     [NonSerialized] public bool hasFishedToday;
     [NonSerialized] public bool hasFish;
@@ -59,9 +68,16 @@ public class GameManager : MonoBehaviour
 
     public bool isStunned;
 
+    private bool endingDialogue;
 
-    void Start()
+    private bool freeCamera;
+
+
+    private void Start()
     {
+        freeCamera = true;
+        screenShake.StartShake(3, .5f);
+
         if (lanternSpr != null)
             lanternSpr.SetActive(!hasLantern);
 
@@ -74,6 +90,8 @@ public class GameManager : MonoBehaviour
         dialogue.gameObject.SetActive(true);
         Canvas.ForceUpdateCanvases();
         dialogue.gameObject.SetActive(false);
+
+        fade.StartFade(true);
     }
 
     private void Update()
@@ -98,6 +116,9 @@ public class GameManager : MonoBehaviour
         // Move
         if (!isStunned)
             playerRB.linearVelocity = moveSpeed * moveInput;
+
+        if (freeCamera)
+            return;
 
         // Camera follow player
         Vector3 newPosition = playerRB.position;
@@ -143,6 +164,16 @@ public class GameManager : MonoBehaviour
 
     public void EndEvent()
     {
+        if (endingDialogue)
+        {
+            if (obedience > 0)
+                StartCoroutine(UnknownEnding2());
+            else
+                StartCoroutine(KnownEnding2());
+
+            return;
+        }
+
         ToggleStun(false);
         choiceEventName = null;
     }
@@ -233,20 +264,32 @@ public class GameManager : MonoBehaviour
     {
         fade.StartFade();
 
+        if (currentDay == 5) // Turn off triggers that would be set off during the endings
+        {
+            fishingTrigger.SetActive(false);
+            pathTrigger.SetActive(false);
+        }
+
         Invoke(nameof(NoFishTime), .9f);
     }
     private void NoFishTime()
     {
-        playerRB.transform.position = stopFishingPosition;
-
-        ToggleStun(false);
-
         nightOverlay.SetActive(true);
         lanternFlicker.baseAlpha += .35f;
         lanternFlicker.transform.localScale = new Vector2(1.5f, 1.5f);
 
         overworldToggle.SetActive(true);
         fishingToggle.SetActive(false);
+
+        if (currentDay == 5)
+        {
+            Ending();
+            return;
+        }    
+
+        playerRB.transform.position = stopFishingPosition;
+
+        ToggleStun(false);
     }
 
     private IEnumerator Bedtime()
@@ -270,7 +313,7 @@ public class GameManager : MonoBehaviour
         }
 
         // Dream event
-        yield return new WaitForSeconds(3);
+        //yield return new WaitForSeconds(3);
 
         fade.StartFade();
         yield return new WaitForSeconds(.9f);
@@ -287,5 +330,100 @@ public class GameManager : MonoBehaviour
         layInBed.SetActive(false);
         playerSR.enabled = true;
         ToggleStun(false);
+    }
+
+
+
+
+    private void Ending()
+    {
+        if (obedience > 0)
+            StartCoroutine(UnknownEnding());
+        else
+            StartCoroutine(KnownEnding());
+    }
+    private IEnumerator UnknownEnding() // Pre dialogue
+    {
+        playerRB.transform.position = new(33, 4.4f);
+
+        yield return new WaitForSeconds(1);
+
+        freeCamera = true;
+        screenShake.StartShake(3, .5f);
+        Debug.Log("entity rises");
+
+        yield return new WaitForSeconds(3);
+
+        freeCamera = true;
+        Debug.Log("entity pauses");
+
+        yield return new WaitForSeconds(1.5f);
+
+        endingDialogue = true;
+
+        string message = ""; // All end dialogue here in this string using [p]
+        TriggerEvent(message);
+    }
+    private IEnumerator UnknownEnding2() // Post dialogue
+    {
+        // Tendril gameobject on, moves left
+        Debug.Log("tendrils appear");
+
+        yield return new WaitForSeconds(1.6f);
+
+        // Tendril gameobject increases speed
+        Debug.Log("tendrils speed up");
+
+        yield return new WaitForSeconds(.4f);
+
+        instantBlack.SetActive(true);
+        // Eating sound
+
+        yield return new WaitForSeconds(3f);
+
+        SceneManager.LoadScene(2);
+    }
+    private IEnumerator KnownEnding() // Pre dialogue
+    {
+        playerRB.transform.position = new(25, .5f);
+
+        yield return new WaitForSeconds(1.5f);
+
+        endingDialogue = true;
+
+        string message = ""; // All end dialogue here in this string using [p]
+        TriggerEvent(message);
+    }
+    private IEnumerator KnownEnding2() // Post dialogue
+    {
+        // Entity fades out, or maybe corpse just lies there.
+        // I don't see an easy way to fade to day using existing fade code (I didn't make the fade code scalable to things other than the black overlay),
+        // plus you'd have to fade the lanter too...if it's super important we can just do it manually here. Or not worry about it.
+
+        playerCol.enabled = false;
+
+        playerRB.linearVelocity = Vector2.left * moveSpeed;
+
+        while (playerRB.position.x > 9)
+            yield return null;
+
+        playerRB.transform.position = new(9, .5f);
+        playerRB.linearVelocity = Vector2.down * moveSpeed;
+
+        while (playerRB.position.y > -6)
+            yield return null;
+
+        freeCamera = true;
+
+        while (playerRB.position.y > -11)
+            yield return null;
+
+        // Player currently walks over the tiles below the path opening. The easiest way to fix this would be to put some more tiles down there on a layer above the player
+
+        fade.StartFade();
+
+        yield return new WaitForSeconds(.9f); // Don't change this time!
+
+        SceneManager.LoadScene(2);
     }
 }

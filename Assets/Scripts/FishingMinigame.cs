@@ -15,6 +15,8 @@ public class FishingMinigame : MonoBehaviour
     [SerializeField] private RectTransform tensionMeterBack;
     [SerializeField] private RectTransform tensionMeterBar;
 
+    [SerializeField] private TMP_Text fishScoreText;
+
     // CONSTANT:
     public int timerLength;
 
@@ -47,6 +49,8 @@ public class FishingMinigame : MonoBehaviour
 
     private Coroutine fishStruggleRoutine;
 
+    private int fishScore;
+
 
 
     private void OnEnable()
@@ -56,6 +60,9 @@ public class FishingMinigame : MonoBehaviour
 
     private void StartFishing()
     {
+        fishScore = 0;
+        fishScoreText.text = "Fish Caught: " + fishScore;
+
         hookRB.transform.position = Vector2.zero;
 
         if (gameManager.currentDay < 5)
@@ -88,7 +95,6 @@ public class FishingMinigame : MonoBehaviour
         hookedItem = null;
         fishStruggleRoutine = null;
 
-        // Put a time's up message here
         gameManager.StopFishing();
     }
 
@@ -157,10 +163,19 @@ public class FishingMinigame : MonoBehaviour
             if (hookedItem.TryGetComponent(out Fish fish))
             {
                 gameManager.hasFish = true;
+                fishScore += 1;
+                fishScoreText.text = "Fish Caught: " + fishScore;
                 StopCoroutine(fishStruggleRoutine);
+                gameManager.obedience += 1;
             }
             else
             {
+                if (gameManager.currentDay == 5)
+                {
+                    StopFishing();
+                    return;
+                }
+
                 // If catch junk, subtract time
                 timer -= 10;
                 if (timer < 1)
@@ -216,10 +231,5 @@ public class FishingMinigame : MonoBehaviour
 
             fishStruggling = false;
         }
-    }
-
-    private void ToggleFishStruggle()
-    {
-
     }
 }

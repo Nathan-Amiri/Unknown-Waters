@@ -20,9 +20,9 @@ public class LeaveHouse : EventTrigger
         else if (gameManager.currentDay == 2)
             message = "There's a note under the door. It reads, \"You are forbidden from looking at the tree today. Do not defy me.\"\n\nGo outside?";
 
-        else if (gameManager.currentDay == 3 && gameManager.obedience > 0)
+        else if (gameManager.currentDay == 3 && gameManager.obedience > -5)
             message = "There's a note under the door. It reads, \"Do not catch green fish. Do not disappoint me.\"\n\nGo outside?";
-        else if (gameManager.currentDay == 3 && gameManager.obedience <= 0)
+        else if (gameManager.currentDay == 3 && gameManager.obedience <= -5)
             message = "There's a note under the door. It reads, \"DO NOT COLLECT GREEN FISH. YOU HAVE BEEN WARNED.\"\n\nGo outside?";
 
         else if (gameManager.currentDay == 4 && gameManager.obedience > 0)

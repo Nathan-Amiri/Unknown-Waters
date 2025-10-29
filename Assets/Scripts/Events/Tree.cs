@@ -7,7 +7,7 @@ public class Tree : EventTrigger
         string message = string.Empty;
 
         if (gameManager.currentDay == 1)
-            message = "It's your favorite tree";
+            message = "It's your favorite tree.";
 
         if (gameManager.currentDay == 2)
             message = "The tree doesn't look happy to see you.";
@@ -19,7 +19,12 @@ public class Tree : EventTrigger
             message = "There are words carved in the bark...\n\n\"KNOW YOUR ENEMY\".";
 
         if (gameManager.currentDay == 5)
-            message = ""; // trigger a creepy event
+        {
+            if (gameManager.obedience > 0)
+                message = "It is unknown.";
+            else
+                message = "It will be known.";
+        }
 
         gameManager.TriggerEvent(message);
     }

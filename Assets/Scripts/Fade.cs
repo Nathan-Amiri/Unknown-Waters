@@ -10,21 +10,27 @@ public class Fade : MonoBehaviour
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
+        sr.enabled = true;
     }
 
-    public void StartFade()
+    public void StartFade(bool fadeInOnly = false)
     {
         StopAllCoroutines();
-        StartCoroutine(FadeRoutine());
+        StartCoroutine(FadeRoutine(fadeInOnly));
     }
-    private IEnumerator FadeRoutine()
+    private IEnumerator FadeRoutine(bool fadeInOnly = false)
     {
-        alpha = 0;
+        float duration = fadeInOnly ? .8f : 1.4f;
 
-        while (alpha < 1)
+        if (!fadeInOnly)
         {
-            alpha += Time.deltaTime * 1.4f;
-            yield return null;
+            alpha = 0;
+
+            while (alpha < 1)
+            {
+                alpha += Time.deltaTime * duration;
+                yield return null;
+            }
         }
 
         alpha = 1;
@@ -33,7 +39,7 @@ public class Fade : MonoBehaviour
 
         while (alpha > 0)
         {
-            alpha -= Time.deltaTime * 1.4f;
+            alpha -= Time.deltaTime * duration;
             yield return null;
         }
 

@@ -38,9 +38,9 @@ public class Fish : MonoBehaviour
     {
         // Sprite flip
         if (rb.linearVelocity.x > 0)
-            sr.flipX = false;
-        if (rb.linearVelocity.x < 0)
             sr.flipX = true;
+        if (rb.linearVelocity.x < 0)
+            sr.flipX = false;
     }
 
     private void StartSwimming()
