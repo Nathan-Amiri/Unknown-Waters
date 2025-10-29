@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 
 public class GameManager : MonoBehaviour
 {
@@ -39,6 +40,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject pathTrigger;
 
     [SerializeField] private ScreenShake screenShake;
+
+    //TILES
+    [SerializeField] private Tilemap overworldTilemap;
+    [SerializeField] private TileBase[] normalTiles;
+    [SerializeField] private TileBase[] redTiles;
+
 
     //ANIMATION
     [SerializeField] private GameObject lanternSpr;
@@ -302,6 +309,19 @@ public class GameManager : MonoBehaviour
 
         ToggleStun(false);
     }
+    private void UpdateTilesForDay()
+    {
+        if (currentDay <= 3)
+        {
+            for (int i = 0; i < normalTiles.Length; i++)
+                overworldTilemap.SwapTile(redTiles[i], normalTiles[i]);
+        }
+        else
+        {
+            for (int i = 0; i < normalTiles.Length; i++)
+                overworldTilemap.SwapTile(normalTiles[i], redTiles[i]);
+        }
+    }
 
     private IEnumerator Bedtime()
     {
@@ -332,6 +352,7 @@ public class GameManager : MonoBehaviour
         roomSR.color = Color.white;
 
         currentDay += 1;
+        UpdateTilesForDay();
         hasFishedToday = false;
         altarFish.SetActive(false);
         nightOverlay.SetActive(false);
