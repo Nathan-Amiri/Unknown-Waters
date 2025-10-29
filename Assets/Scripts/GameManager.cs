@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
 
     // Choice event variables:
     private string choiceEventName;
-    [NonSerialized] public int currentDay = 5;//1;
+    [NonSerialized] public int currentDay = 1;//1;
     [NonSerialized] public int obedience = -10;
     [NonSerialized] public bool hasLantern;
     [NonSerialized] public bool hasFishedToday;
@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
 
     private bool endingDialogue;
 
-    private bool freeCamera;
+    public bool freeCamera;
 
 
     private void Start()
@@ -186,9 +186,15 @@ public class GameManager : MonoBehaviour
         if (choiceEventName == "Fishing")
             StartFishing();
         else if (choiceEventName == "LeaveHouse")
+        {
             playerRB.transform.position = leaveHousePosition;
+            freeCamera = false;
+        }
         else if (choiceEventName == "EnterHouse")
+        {
             playerRB.transform.position = enterHousePosition;
+            freeCamera = true;
+        }
         else if (choiceEventName == "Lantern")
         {
             if (hasLantern)
@@ -274,17 +280,23 @@ public class GameManager : MonoBehaviour
     private void NoFishTime()
     {
         nightOverlay.SetActive(true);
-        lanternFlicker.baseAlpha += .35f;
+        lanternFlicker.baseAlpha = 0.1f;
         lanternFlicker.transform.localScale = new Vector2(1.5f, 1.5f);
 
         overworldToggle.SetActive(true);
         fishingToggle.SetActive(false);
 
+        hasLantern = true;
+        playerAnimator?.SetBool("HasLantern", true);
+        playerAnimator?.Play("IdleTree_lantern");
+        lanternSpr?.SetActive(false);
+        lanternGlowPlayer?.SetActive(true);
+
         if (currentDay == 5)
         {
             Ending();
             return;
-        }    
+        }
 
         playerRB.transform.position = stopFishingPosition;
 
@@ -323,7 +335,7 @@ public class GameManager : MonoBehaviour
         hasFishedToday = false;
         altarFish.SetActive(false);
         nightOverlay.SetActive(false);
-        lanternFlicker.baseAlpha -= .35f;
+        lanternFlicker.baseAlpha = 0.25f;
         lanternFlicker.transform.localScale = new Vector2(1, 1);
 
         layInBed.SetActive(false);
