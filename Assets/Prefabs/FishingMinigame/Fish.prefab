@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2747291027073302503}
   - component: {fileID: 6468343457474743097}
   - component: {fileID: 3472497815633864443}
+  - component: {fileID: 4012153538351682745}
   m_Layer: 0
   m_Name: Fish
   m_TagString: Fish
@@ -81,7 +82,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -510192079
-  m_SortingLayer: 1
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
   m_Color: {r: 1, g: 0, b: 0.8084502, a: 1}
@@ -110,6 +111,7 @@ MonoBehaviour:
   rb: {fileID: 6468343457474743097}
   destinationSR: {fileID: 5215432835456369138}
   destination: {fileID: 5936208327402997836}
+  isHooked: 0
 --- !u!50 &6468343457474743097
 Rigidbody2D:
   serializedVersion: 5
@@ -183,6 +185,51 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4012153538351682745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8143916714757426819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2e648e4ba6865945823cbb45dd723f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenShake
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.6353288
+      outSlope: 1.6353288
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.12229957
+      value: 0.2
+      inSlope: -0.4446208
+      outSlope: -0.4446208
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.09423077
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.22786818
+      outSlope: -0.22786818
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &8678839010115058412
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Tree : EventTrigger
+public class TreeEvent : EventTrigger
 {
     protected override void EventTriggered()
     {

@@ -17,6 +17,10 @@ public class FishingMinigame : MonoBehaviour
 
     [SerializeField] private TMP_Text fishScoreText;
 
+    [SerializeField] private ScreenShake screenShake;
+
+    [SerializeField] private GameObject itGotAway;
+
     // CONSTANT:
     public int timerLength;
 
@@ -53,7 +57,6 @@ public class FishingMinigame : MonoBehaviour
     private Coroutine fishStruggleRoutine;
 
     private int fishScore;
-
 
 
     private void OnEnable()
@@ -144,10 +147,31 @@ public class FishingMinigame : MonoBehaviour
         else
             tension -= tensionDecreaseSpeed * Time.deltaTime;
 
-        if (tension > 100)
-            tension = 100;
         if (tension < 0)
             tension = 0;
+
+        if (tension > 100)
+        {
+            hookRB.constraints = RigidbodyConstraints2D.FreezeAll;
+
+            tension = 0;
+
+            StopCoroutine(fishStruggleRoutine);
+            fishStruggling = false;
+
+            Destroy(hookedItem.gameObject);
+            hookedItem = null;
+
+            reelSpeed -= 1;
+
+            itGotAway.SetActive(true);
+        }
+
+        if (itGotAway.activeSelf && Input.GetButtonDown("Reel"))
+        {
+            itGotAway.SetActive(false);
+            hookRB.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
 
         // This code block isn't a typo fyi
         {
@@ -201,6 +225,8 @@ public class FishingMinigame : MonoBehaviour
 
             Destroy(hookedItem.gameObject);
             hookedItem = null;
+
+            reelSpeed -= 1;
         }
 
         if (hookedItem != null) return;
@@ -211,11 +237,13 @@ public class FishingMinigame : MonoBehaviour
 
             hookedItem.parent = transform;
             hookedItem.localPosition = new(0, -2f);
+
+            reelSpeed += 1;
         }
         else if (col.CompareTag("Fish"))
         {
             hookedItem = col.transform;
-            var fish = col.GetComponent<Fish>();
+            Fish fish = col.GetComponent<Fish>();
             fish.StopSwimming();
 
             fish.isHooked = true;                          // freeze fish logic
@@ -228,6 +256,8 @@ public class FishingMinigame : MonoBehaviour
 
 
             fishStruggleRoutine = StartCoroutine(FishStruggle());
+
+            reelSpeed += 1;
         }
     }
 
@@ -241,6 +271,8 @@ public class FishingMinigame : MonoBehaviour
             fishStruggling = true;
 
             float struggleTime = Random.Range(fishStruggleDuration - fishStruggleVariance, fishStruggleDuration + fishStruggleVariance);
+            screenShake.StartShake(struggleTime, .4f);
+
             yield return new WaitForSeconds(struggleTime);
 
             fishStruggling = false;

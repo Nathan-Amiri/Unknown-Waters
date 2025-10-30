@@ -201,6 +201,7 @@ public class GameManager : MonoBehaviour
         {
             playerRB.transform.position = enterHousePosition;
             freeCamera = true;
+            overworldCamera.transform.position = new(-50, 3, -10);
         }
         else if (choiceEventName == "Lantern")
         {
@@ -370,9 +371,15 @@ public class GameManager : MonoBehaviour
     private void Ending()
     {
         if (obedience > 0)
+        {
+            Credits.unknownEnding = true;
             StartCoroutine(UnknownEnding());
+        }
         else
+        {
+            Credits.unknownEnding = false;
             StartCoroutine(KnownEnding());
+        }
     }
     private IEnumerator UnknownEnding() // Pre dialogue
     {
