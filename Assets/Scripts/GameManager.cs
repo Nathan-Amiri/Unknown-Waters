@@ -630,36 +630,39 @@ public class GameManager : MonoBehaviour
     }
     private IEnumerator KnownEnding2() // Post dialogue
     {
-
         StartCoroutine(FadeOutObject(entityCorpse, 3f));
         yield return new WaitForSeconds(3f);
 
+        // Extra linger on the corpse after fade
+        yield return new WaitForSeconds(2f); // +2.0s
+
         playerCol.enabled = false;
 
-        playerRB.linearVelocity = Vector2.left * moveSpeed;
-
+        // Walk left slower than normal (3.5 u/s → 14/3.5 = 4.0s)
+        playerRB.linearVelocity = Vector2.left * 3.5f;
         while (playerRB.position.x > 9f)
             yield return null;
 
-        // stop, snap X only to the corner, keep current Y (now -2), then head down
+        // Stop at the corner and pause briefly
         playerRB.linearVelocity = Vector2.zero;
         playerRB.transform.position = new Vector2(9f, playerRB.position.y);
-        playerRB.linearVelocity = Vector2.down * moveSpeed;
+        yield return new WaitForSeconds(1f); // +1.0s
 
-
-        while (playerRB.position.y > -6)
+        // Walk down slower (3.0 u/s → 9/3.0 = 3.0s)
+        playerRB.linearVelocity = Vector2.down * 3.0f;
+        while (playerRB.position.y > -6f)
             yield return null;
 
         freeCamera = true;
 
-        while (playerRB.position.y > -11)
+        while (playerRB.position.y > -11f)
             yield return null;
 
-        // Player currently walks over the tiles below the path opening. The easiest way to fix this would be to put some more tiles down there on a layer above the player
+        // Hold in silence before the fade
+        yield return new WaitForSeconds(3.1f); // +3.1s
 
         fade.StartFade();
-
-        yield return new WaitForSeconds(.9f); // Don't change this time!
+        yield return new WaitForSeconds(0.9f); // don't change this
 
         SceneManager.LoadScene(2);
     }
