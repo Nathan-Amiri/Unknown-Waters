@@ -59,6 +59,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject lanternSpr;
     [SerializeField] private GameObject lanternGlowPlayer;
     [SerializeField] private Animator playerAnimator;
+    [SerializeField] private GameObject lanternMask;
+
 
 
     // CONSTANT:
@@ -217,21 +219,23 @@ public class GameManager : MonoBehaviour
                 // Re-enable the scene lantern
                 lanternSpr?.SetActive(true);
 
-                // Disable player glow and reset animation
+                // Disable glow, animation, and sprite mask
                 SetLanternGlow(false, 0f);
                 playerAnimator?.SetBool("HasLantern", false);
+                lanternMask?.SetActive(false);
             }
             else
             {
                 // Player picks it up
                 hasLantern = true;
 
-                // Hide the scene lantern in the world
+                // Hide the scene lantern
                 lanternSpr?.SetActive(false);
 
-                // Enable player glow and update animation
+                // Enable glow, animation, and sprite mask
                 SetLanternGlow(true, 0.25f);
                 playerAnimator?.SetBool("HasLantern", true);
+                lanternMask?.SetActive(true);
             }
         }
         else if (choiceEventName == "Bed")
@@ -396,8 +400,12 @@ public class GameManager : MonoBehaviour
         hasFishedToday = false;
         altarFish.SetActive(false);
         nightOverlay.SetActive(false);
-        SetLanternGlow(true, 0.25f);
 
+        // Wake up WITHOUT lantern equipped
+        hasLantern = false;
+        lanternSpr?.SetActive(true);                 // place lantern back in scene
+        playerAnimator?.SetBool("HasLantern", false);
+        SetLanternGlow(false, 0f);                   // no glow on wake
 
         // Wake up
         layInBed.SetActive(false);

@@ -21,6 +21,9 @@ public class FishingMinigame : MonoBehaviour
 
     [SerializeField] private GameObject itGotAway;
 
+    [SerializeField] private GameObject finalEntity;
+    private bool finalEntityHooked = false;
+
     // CONSTANT:
     public int timerLength;
 
@@ -100,6 +103,12 @@ public class FishingMinigame : MonoBehaviour
         fishStruggling = false;
         hookedItem = null;
         fishStruggleRoutine = null;
+
+        if (finalEntityHooked)
+        {
+            screenShake.StopContinuous();
+            finalEntityHooked = false;
+        }
 
         gameManager.StopFishing();
     }
@@ -239,6 +248,12 @@ public class FishingMinigame : MonoBehaviour
             hookedItem.localPosition = new(0, -2f);
 
             reelSpeed += 1;
+
+            if (col.gameObject == finalEntity)
+            {
+                finalEntityHooked = true;
+                screenShake.StartContinuous(0.7f);  // strength to taste (0.4–0.9)
+            }
         }
         else if (col.CompareTag("Fish"))
         {
