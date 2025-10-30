@@ -19458,12 +19458,13 @@ MonoBehaviour:
   leaveHousePosition: {x: 0.65, y: 0.5}
   stopFishingPosition: {x: 31, y: 4.1}
   currentDay: 5
-  obedience: 10
+  obedience: -10
   isStunned: 0
   freeCamera: 0
   entitySurface: {fileID: 275072137}
   tendrilOne: {fileID: 1841901056}
   tendrilTwo: {fileID: 671103211}
+  entityCorpse: {fileID: 1366531695}
 --- !u!4 &1037046216
 Transform:
   m_ObjectHideFlags: 0

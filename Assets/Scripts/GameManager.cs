@@ -459,6 +459,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject tendrilOne;
     [SerializeField] private GameObject tendrilTwo;
 
+    [SerializeField] private GameObject entityCorpse;
+
     private void Ending()
     {
         if (obedience > 0)
@@ -577,32 +579,73 @@ public class GameManager : MonoBehaviour
 
         SceneManager.LoadScene(2);
     }
+
+
+    private IEnumerator FadeOutObject(GameObject obj, float duration)
+    {
+        if (obj == null) yield break;
+        var sr = obj.GetComponent<SpriteRenderer>();
+        if (sr == null) yield break;
+
+        Color start = sr.color;
+        Color end = start;
+        end.a = 0f;
+
+        float t = 0f;
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            sr.color = Color.Lerp(start, end, t / duration);
+            yield return null;
+        }
+        sr.color = end;
+    }
+
+
     private IEnumerator KnownEnding() // Pre dialogue
     {
-        playerRB.transform.position = new(25, .5f);
+
+        nightOverlay.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 100f / 255f);
+
+
+        entityCorpse.SetActive(true);
+
+        playerRB.transform.position = new(23, -2);
 
         yield return new WaitForSeconds(1.5f);
 
         endingDialogue = true;
 
-        string message = ""; // All end dialogue here in this string using [p]
+        string message = "The shore... it burns.[p]" +
+                        "The air tastes of iron... and you still breathe.[p]" +
+                        "I warned you not to look beneath the light.[p]" +
+                        "You tore the silence open... and now I sink alone.[p]" +
+                        "Do you feel it, Fisherman?[p]" +
+                        "The weight lifting from your chest?[p]" +
+                        "<color=#B22222><i>The sea forgets you now.</i></color>[p]" +
+                        "<color=#5CB3FF>Go.</color>[p]" +
+                        "<color=#B22222><i>Leave me to the deep.</i></color>";
+
         TriggerEvent(message);
     }
     private IEnumerator KnownEnding2() // Post dialogue
     {
-        // Entity fades out, or maybe corpse just lies there.
-        // I don't see an easy way to fade to day using existing fade code (I didn't make the fade code scalable to things other than the black overlay),
-        // plus you'd have to fade the lanter too...if it's super important we can just do it manually here. Or not worry about it.
+
+        StartCoroutine(FadeOutObject(entityCorpse, 3f));
+        yield return new WaitForSeconds(3f);
 
         playerCol.enabled = false;
 
         playerRB.linearVelocity = Vector2.left * moveSpeed;
 
-        while (playerRB.position.x > 9)
+        while (playerRB.position.x > 9f)
             yield return null;
 
-        playerRB.transform.position = new(9, .5f);
+        // stop, snap X only to the corner, keep current Y (now -2), then head down
+        playerRB.linearVelocity = Vector2.zero;
+        playerRB.transform.position = new Vector2(9f, playerRB.position.y);
         playerRB.linearVelocity = Vector2.down * moveSpeed;
+
 
         while (playerRB.position.y > -6)
             yield return null;
