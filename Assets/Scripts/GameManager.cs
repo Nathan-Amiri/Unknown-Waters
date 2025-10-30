@@ -491,6 +491,37 @@ public class GameManager : MonoBehaviour
         obj.transform.position = end;
     }
 
+    private IEnumerator MoveObject(GameObject obj, Vector3 target, float duration)
+    {
+        if (obj == null) yield break;
+        Vector3 start = obj.transform.position;
+        float t = 0f;
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            obj.transform.position = Vector3.Lerp(start, target, t / duration);
+            yield return null;
+        }
+        obj.transform.position = target;
+    }
+
+    private IEnumerator StretchObjectX(GameObject obj, float startX, float endX, float duration)
+    {
+        if (obj == null) yield break;
+        Vector3 scale = obj.transform.localScale;
+        float t = 0f;
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            float k = Mathf.Clamp01(t / duration);
+            scale.x = Mathf.Lerp(startX, endX, k);
+            obj.transform.localScale = scale;
+            yield return null;
+        }
+        scale.x = endX;
+        obj.transform.localScale = scale;
+    }
+
     private IEnumerator UnknownEnding() // Pre dialogue
     {
         playerRB.transform.position = new(33, 4.4f);
@@ -512,21 +543,26 @@ public class GameManager : MonoBehaviour
 
         endingDialogue = true;
 
-        string message = ""; // All end dialogue here in this string using [p]
+        string message = "Good work dude."; // All end dialogue here in this string using [p]
         TriggerEvent(message);
     }
     private IEnumerator UnknownEnding2() // Post dialogue
     {
         // Tendril gameobject on, moves left
         Debug.Log("tendrils appear");
+        StartCoroutine(MoveObject(tendrilOne, tendrilOne.transform.position + new Vector3(-1f, 0f, 0f), 1.6f));
 
         yield return new WaitForSeconds(1.6f);
 
         // Tendril gameobject increases speed
         Debug.Log("tendrils speed up");
 
-        yield return new WaitForSeconds(.4f);
+        tendrilOne.SetActive(false);
+        tendrilTwo.SetActive(true);
 
+        yield return new WaitForSeconds(0.1f);
+
+        lanternMask.SetActive(false);
         instantBlack.SetActive(true);
         // Eating sound
 
