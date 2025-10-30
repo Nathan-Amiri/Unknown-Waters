@@ -19457,8 +19457,8 @@ MonoBehaviour:
   enterHousePosition: {x: -51.5, y: 0}
   leaveHousePosition: {x: 0.65, y: 0.5}
   stopFishingPosition: {x: 31, y: 4.1}
-  currentDay: 1
-  obedience: -7
+  currentDay: 5
+  obedience: -10
   isStunned: 0
   freeCamera: 0
   entitySurface: {fileID: 275072137}
@@ -90327,6 +90327,10 @@ PrefabInstance:
       propertyPath: entityEmerge
       value: 
       objectReference: {fileID: 8300000, guid: 7b07f582162be5541b8f45baea76ff60, type: 3}
+    - target: {fileID: 7687322373604910668, guid: 5aaf2757c2433224bbb9bbd74b44b2e7, type: 3}
+      propertyPath: knownEndingSingle
+      value: 
+      objectReference: {fileID: 8300000, guid: 168fd7f2a6825d548acead9ee951db87, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8606585856484269807, guid: 5aaf2757c2433224bbb9bbd74b44b2e7, type: 3}

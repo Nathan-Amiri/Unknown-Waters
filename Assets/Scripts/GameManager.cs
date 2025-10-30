@@ -579,9 +579,9 @@ public class GameManager : MonoBehaviour
     {
         // Tendril gameobject on, moves left
         Debug.Log("tendrils appear");
-        StartCoroutine(MoveObject(tendrilOne, tendrilOne.transform.position + new Vector3(-1f, 0f, 0f), 1.6f));
+        StartCoroutine(MoveObject(tendrilOne, tendrilOne.transform.position + new Vector3(-1f, 0f, 0f), 3f));
 
-        yield return new WaitForSeconds(1.6f);
+        yield return new WaitForSeconds(3f);
 
         // Tendril gameobject increases speed
         Debug.Log("tendrils speed up");
@@ -594,6 +594,8 @@ public class GameManager : MonoBehaviour
         lanternMask.SetActive(false);
         instantBlack.SetActive(true);
         // Eating sound
+
+        MusicManager.I?.PlayUnknownEnding(1.2f, loop: false);
 
         yield return new WaitForSeconds(3f);
 
@@ -625,10 +627,9 @@ public class GameManager : MonoBehaviour
     private IEnumerator KnownEnding() // Pre dialogue
     {
         // AUDIO: seamless known ending (A 17s -> B in credits)
-        MusicManager.I?.PlayKnownEndingTwoPart(17.0);
+        MusicManager.I?.HardStopAll();
 
         nightOverlay.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 100f / 255f);
-
 
         entityCorpse.SetActive(true);
 
@@ -652,6 +653,9 @@ public class GameManager : MonoBehaviour
     }
     private IEnumerator KnownEnding2() // Post dialogue
     {
+
+        // NEW:
+        MusicManager.I?.PlayKnownEndingSingle(1.2f, loop: false);
 
         StartCoroutine(FadeOutObject(entityCorpse, 3f));
         yield return new WaitForSeconds(3f);
@@ -682,8 +686,6 @@ public class GameManager : MonoBehaviour
         fade.StartFade();
 
         yield return new WaitForSeconds(.9f); // Don't change this time!
-
-        MusicManager.I?.PlayUnknownEnding(1.2f, loop: false);
 
         SceneManager.LoadScene(2);
     }

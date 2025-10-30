@@ -55,6 +55,8 @@ public class Credits : MonoBehaviour
 
         yield return new WaitForSeconds(4);
 
+        MusicManager.I?.HardStopAll();
+
         fade.StartFade(true);
 
         yield return new WaitForSeconds(.9f);

@@ -25,6 +25,9 @@ public class MusicManager : MonoBehaviour
 
     [Header("Endings")]
     public AudioClip unknownEnding;  // obedient ending
+
+    public AudioClip knownEndingSingle;
+
     public AudioClip knownEnding_A;  // 17s part in overworld
     public AudioClip knownEnding_B;  // continuation in credits
 
@@ -142,38 +145,45 @@ public class MusicManager : MonoBehaviour
         CrossfadeTo(unknownEnding, fade, loop);
     }
 
-    // Schedules Known Ending Part A -> Part B with per-clip volumes
-    public void PlayKnownEndingTwoPart(double partALengthSeconds, float preDelay = 0.05f)
+    /*
+        // Schedules Known Ending Part A -> Part B with per-clip volumes
+        public void PlayKnownEndingTwoPart(double partALengthSeconds, float preDelay = 0.05f)
+        {
+            if (!knownEnding_A || !knownEnding_B) return;
+
+            if (fadeCR != null) StopCoroutine(fadeCR);
+            a.Stop(); b.Stop(); amb.Stop();
+            a.volume = b.volume = amb.volume = 0f;
+
+            var srcA = a;
+            var srcB = b;
+
+            double now = AudioSettings.dspTime;
+            double startA = now + Mathf.Max(0f, preDelay);
+            double endA = startA + partALengthSeconds;
+            double startB = endA;
+
+            float volA = GetVolumeForClip(knownEnding_A);
+            float volB = GetVolumeForClip(knownEnding_B);
+
+            srcA.clip = knownEnding_A;
+            srcA.loop = false;
+            srcA.volume = volA;
+            srcA.PlayScheduled(startA);
+            srcA.SetScheduledEndTime(endA);
+
+            srcB.clip = knownEnding_B;
+            srcB.loop = true;
+            srcB.volume = volB;
+            srcB.PlayScheduled(startB);
+
+            activeMusic = srcB;
+        }
+    */
+    public void PlayKnownEndingSingle(float fade = -1f, bool loop = false)
     {
-        if (!knownEnding_A || !knownEnding_B) return;
-
-        if (fadeCR != null) StopCoroutine(fadeCR);
-        a.Stop(); b.Stop(); amb.Stop();
-        a.volume = b.volume = amb.volume = 0f;
-
-        var srcA = a;
-        var srcB = b;
-
-        double now = AudioSettings.dspTime;
-        double startA = now + Mathf.Max(0f, preDelay);
-        double endA = startA + partALengthSeconds;
-        double startB = endA;
-
-        float volA = GetVolumeForClip(knownEnding_A);
-        float volB = GetVolumeForClip(knownEnding_B);
-
-        srcA.clip = knownEnding_A;
-        srcA.loop = false;
-        srcA.volume = volA;
-        srcA.PlayScheduled(startA);
-        srcA.SetScheduledEndTime(endA);
-
-        srcB.clip = knownEnding_B;
-        srcB.loop = true;
-        srcB.volume = volB;
-        srcB.PlayScheduled(startB);
-
-        activeMusic = srcB;
+        SetAmbience(null, defaultFade);
+        CrossfadeTo(knownEndingSingle, fade, loop);
     }
 
     // Ambience uses per-clip volume too
@@ -294,7 +304,7 @@ public class MusicManager : MonoBehaviour
         if (clip == fishing35) return 1.00f;
 
         if (clip == entityReelUp) return 0.70f;
-        if (clip == entityEmerge) return 0.90f;
+        if (clip == entityEmerge) return 0.50f;
 
         if (clip == unknownEnding) return 0.80f;
         if (clip == knownEnding_A) return 0.85f;
