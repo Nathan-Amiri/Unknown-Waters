@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: b7e1aa8527ad71f458e19d4fdd0b579a
+guid: 1b0f1ec3a1e75ff4babc2d7c94057573
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7518220351073595496
-    second: tendral-2_0
-  - first:
-      213: 3829947513140178824
-    second: tendral-2_1
+      213: 3172297784709618795
+    second: Entity Cover gradient_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -40,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -78,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -116,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tendral-2_0
+      name: Entity Cover gradient_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 13
-        width: 210
-        height: 201
+        x: 0
+        y: 0
+        width: 405
+        height: 409
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 89f45278c6ae9a790800000000000000
-      internalID: -7518220351073595496
+      spriteID: b6c10631704460c20800000000000000
+      internalID: 3172297784709618795
       vertices: []
       indices: 
       edges: []
@@ -141,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: f249f7c5be0f371478af8ead104ddfe3
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -151,8 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      tendral-2_0: -7518220351073595496
-      tendral-2_1: 3829947513140178824
+      Entity Cover gradient_0: 3172297784709618795
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

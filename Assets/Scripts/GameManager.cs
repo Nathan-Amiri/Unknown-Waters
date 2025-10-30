@@ -454,7 +454,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
+    //Ending visuals
+    [SerializeField] private GameObject entitySurface;
+    [SerializeField] private GameObject tendrilOne;
+    [SerializeField] private GameObject tendrilTwo;
 
     private void Ending()
     {
@@ -469,6 +472,25 @@ public class GameManager : MonoBehaviour
             StartCoroutine(KnownEnding());
         }
     }
+
+
+
+
+    private IEnumerator MoveObjectUp(GameObject obj, float distance, float duration)
+    {
+        if (obj == null) yield break;
+        Vector3 start = obj.transform.position;
+        Vector3 end = start + new Vector3(0f, distance, 0f);
+        float t = 0f;
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            obj.transform.position = Vector3.Lerp(start, end, t / duration);
+            yield return null;
+        }
+        obj.transform.position = end;
+    }
+
     private IEnumerator UnknownEnding() // Pre dialogue
     {
         playerRB.transform.position = new(33, 4.4f);
@@ -478,6 +500,8 @@ public class GameManager : MonoBehaviour
         freeCamera = true;
         screenShake.StartShake(3, .5f);
         Debug.Log("entity rises");
+
+        StartCoroutine(MoveObjectUp(entitySurface, 10f, 3f));
 
         yield return new WaitForSeconds(3);
 
