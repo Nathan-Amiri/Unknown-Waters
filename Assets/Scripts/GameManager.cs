@@ -653,26 +653,26 @@ public class GameManager : MonoBehaviour
     }
     private IEnumerator KnownEnding2() // Post dialogue
     {
-
-        // NEW:
+        // Start the single known-ending track
         MusicManager.I?.PlayKnownEndingSingle(1.2f, loop: false);
 
+        // Corpse fade-out and short pause
         StartCoroutine(FadeOutObject(entityCorpse, 3f));
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5.5f);
 
         playerCol.enabled = false;
 
-        playerRB.linearVelocity = Vector2.left * moveSpeed;
-
+        // Horizontal walk left
+        playerRB.linearVelocity = Vector2.left * 4;
         while (playerRB.position.x > 9f)
             yield return null;
 
-        // stop, snap X only to the corner, keep current Y (now -2), then head down
+        // Stop, then walk down
         playerRB.linearVelocity = Vector2.zero;
         playerRB.transform.position = new Vector2(9f, playerRB.position.y);
-        playerRB.linearVelocity = Vector2.down * moveSpeed;
+        playerRB.linearVelocity = Vector2.down * 4;
 
-
+        // Two downward segments
         while (playerRB.position.y > -6)
             yield return null;
 
@@ -681,12 +681,12 @@ public class GameManager : MonoBehaviour
         while (playerRB.position.y > -11)
             yield return null;
 
-        // Player currently walks over the tiles below the path opening. The easiest way to fix this would be to put some more tiles down there on a layer above the player
+        // --- PAD time so total = 17s ---
+        yield return new WaitForSeconds(4.5f);
 
+        // Fade to black and load credits
         fade.StartFade();
-
-        yield return new WaitForSeconds(.9f); // Don't change this time!
-
+        yield return new WaitForSeconds(0.9f); // keep this exact
         SceneManager.LoadScene(2);
     }
 }

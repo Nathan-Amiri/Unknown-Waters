@@ -28,27 +28,27 @@ public class Credits : MonoBehaviour
         creditsText.color = Color.green;
         creditsText.text = "Dorian Kavadlo:\n\nCreative Director\nProgramming\nMusic & SFX";
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4);
 
         creditsText.color = Color.yellow;
         creditsText.text = "Vannia \"navinau\" U:\n\nBackground Artist";
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4);
 
         creditsText.color = Color.blue;
         creditsText.text = "Gavin Banes:\n\nCharacter Animations\nAdditional Art";
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4);
 
         creditsText.color = Color.cyan;
         creditsText.text = "Taylor:\n\nAdditional Art";
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4);
 
         creditsText.color = Color.hotPink;
         creditsText.text = "Nathan Amiri (azeTrom):\n\nProgramming\nDesign\nGeneral Mayhem";
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4);
 
         creditsText.color = Color.white;
         creditsText.text = "Thanks for playing!";
