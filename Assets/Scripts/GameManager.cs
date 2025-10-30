@@ -543,7 +543,14 @@ public class GameManager : MonoBehaviour
 
         endingDialogue = true;
 
-        string message = "Good work dude."; // All end dialogue here in this string using [p]
+        string message = "You did well, little Fisherman.[p]" +
+                        "You gave what was asked. You did not question.[p]" +
+                        "The tide obeyed you, because you obeyed me.[p]" +
+                        "I have watched your every cast, every trembling breath.[p]" +
+                        "Now, the debt is due.[p]" +
+                        "Be still.[p]" +
+                        "<color=#B22222><i>Let the sea reclaim what it lent.</i></color>";
+
         TriggerEvent(message);
     }
     private IEnumerator UnknownEnding2() // Post dialogue
