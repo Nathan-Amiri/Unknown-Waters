@@ -72,5 +72,8 @@ TagManager:
   - name: Overlays
     uniqueID: 4191407531
     locked: 0
+  - name: Text and Fishing UI
+    uniqueID: 2559177337
+    locked: 0
   m_RenderingLayers:
   - Default

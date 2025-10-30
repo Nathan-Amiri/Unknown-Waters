@@ -42,9 +42,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ScreenShake screenShake;
 
     //TILES
-    [SerializeField] private Tilemap fishingTilemap;
+    [SerializeField] private Tilemap boundaryFishingTilemap;
+    [SerializeField] private Tilemap terrainFishingTilemap;
+    [SerializeField] private Tilemap backgroundFishingTilemap;
     [SerializeField] private TileBase[] normalTiles;
     [SerializeField] private TileBase[] redTiles;
+
+    [SerializeField] private SpriteRenderer backgroundColorRenderer;
+    [SerializeField] private SpriteRenderer backgroundArtRenderer;
+
+    [SerializeField] private Sprite blueArtSprite;
+    [SerializeField] private Sprite redArtSprite;
 
 
     //ANIMATION
@@ -65,8 +73,10 @@ public class GameManager : MonoBehaviour
 
     // Choice event variables:
     private string choiceEventName;
-    [NonSerialized] public int currentDay = 1;//1;
-    [NonSerialized] public int obedience = -10;
+    [SerializeField] public int currentDay = 1;//1;
+    private int MaxDay => fishingDayLayouts != null ? fishingDayLayouts.Count : 0;
+
+    [SerializeField] public int obedience = -10;
     [NonSerialized] public bool hasLantern;
     [NonSerialized] public bool hasFishedToday;
     [NonSerialized] public bool hasFish;
@@ -98,6 +108,8 @@ public class GameManager : MonoBehaviour
         dialogue.gameObject.SetActive(false);
 
         fade.StartFade(true);
+
+        UpdateTilesForDay();
     }
 
     private void Update()
@@ -263,16 +275,26 @@ public class GameManager : MonoBehaviour
     private void FishTime()
     {
         hasFishedToday = true;
-
         ToggleStun(true);
 
-        foreach (GameObject fishingDayLayout in fishingDayLayouts)
-            fishingDayLayout.SetActive(false);
-        fishingDayLayouts[currentDay - 1].SetActive(true);
+        foreach (var go in fishingDayLayouts) go.SetActive(false);
+
+        if (MaxDay > 0)
+        {
+            int idx = Mathf.Clamp(currentDay - 1, 0, MaxDay - 1); // safe index
+            fishingDayLayouts[idx].SetActive(true);
+        }
+        else
+        {
+            Debug.LogWarning("No fishingDayLayouts assigned.");
+        }
 
         fishingToggle.SetActive(true);
         overworldToggle.SetActive(false);
+
+        UpdateTilesForDay();
     }
+
     public void StopFishing() // Called by FishingMinigame
     {
         fade.StartFade();
@@ -312,15 +334,47 @@ public class GameManager : MonoBehaviour
     }
     private void UpdateTilesForDay()
     {
-        if (currentDay <= 3)
+        bool useRed = currentDay >= 4;
+
+        // Always update the background color/art, even if tiles aren’t configured
+        SetFishingBackdrop(useRed);
+
+        // Then (optionally) swap tiles if arrays are valid
+        if (normalTiles == null || redTiles == null) return;
+
+        int n = Mathf.Min(normalTiles.Length, redTiles.Length);
+        if (n <= 0) return;
+
+        for (int i = 0; i < n; i++)
         {
-            for (int i = 0; i < normalTiles.Length; i++)
-                fishingTilemap.SwapTile(redTiles[i], normalTiles[i]);
+            var from = useRed ? normalTiles[i] : redTiles[i];
+            var to = useRed ? redTiles[i] : normalTiles[i];
+
+            if (from == null || to == null) continue;
+
+            if (boundaryFishingTilemap) boundaryFishingTilemap.SwapTile(from, to);
+            if (terrainFishingTilemap) terrainFishingTilemap.SwapTile(from, to);
+            if (backgroundFishingTilemap) backgroundFishingTilemap.SwapTile(from, to);
         }
-        else
+    }
+
+
+    private void SetFishingBackdrop(bool useRed)
+    {
+        if (backgroundColorRenderer != null)
         {
-            for (int i = 0; i < normalTiles.Length; i++)
-                fishingTilemap.SwapTile(normalTiles[i], redTiles[i]);
+            // Blue (days 1–3): #4A57C3
+            // Red (days 4–5):  #C34B57
+            Color newColor = useRed
+                ? new Color32(0xC3, 0x4B, 0x57, 0xFF)
+                : new Color32(0x4A, 0x57, 0xC3, 0xFF);
+
+            backgroundColorRenderer.color = newColor;
+        }
+
+        if (backgroundArtRenderer != null)
+        {
+            backgroundArtRenderer.sprite = useRed ? redArtSprite : blueArtSprite;
         }
     }
 
@@ -353,6 +407,9 @@ public class GameManager : MonoBehaviour
         roomSR.color = Color.white;
 
         currentDay += 1;
+        if (MaxDay > 0)
+            currentDay = Mathf.Clamp(currentDay, 1, MaxDay);
+
         UpdateTilesForDay();
         hasFishedToday = false;
         altarFish.SetActive(false);
