@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class StartButtonFade : MonoBehaviour
 {
-    public SpriteRenderer sr;
+    public Image img;
     public float fadeTime = 1f;
 
     void Start()
@@ -25,12 +26,12 @@ public class StartButtonFade : MonoBehaviour
     IEnumerator Fade(float from, float to)
     {
         float t = 0f;
-        Color c = sr.color;
+        Color c = img.color;
         while (t < fadeTime)
         {
             t += Time.deltaTime;
             c.a = Mathf.Lerp(from, to, t / fadeTime);
-            sr.color = c;
+            img.color = c;
             yield return null;
         }
     }

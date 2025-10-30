@@ -106,6 +106,9 @@ public class GameManager : MonoBehaviour
 
         fade.StartFade(true);
 
+        // AUDIO: start gameplay music in cabin
+        MusicManager.I?.PlayOverworld(inCabin: true, fade: 1.0f);
+
         UpdateTilesForDay();
     }
 
@@ -278,6 +281,9 @@ public class GameManager : MonoBehaviour
         fishingToggle.SetActive(true);
         overworldToggle.SetActive(false);
 
+        // AUDIO: fishing theme (Days 1–2 vs 3–5)
+        MusicManager.I?.PlayFishingForDay(currentDay, 1.0f);
+
         UpdateTilesForDay();
     }
 
@@ -314,6 +320,9 @@ public class GameManager : MonoBehaviour
             Ending();
             return;
         }
+
+        // AUDIO: back to overworld (outside)
+        MusicManager.I?.PlayOverworld(inCabin: false, fade: 1.0f);
 
         // Reset player position and controls
         playerRB.transform.position = stopFishingPosition;
@@ -411,6 +420,9 @@ public class GameManager : MonoBehaviour
         layInBed.SetActive(false);
         playerSR.enabled = true;
         ToggleStun(false);
+
+        // AUDIO: new day, still in cabin
+        MusicManager.I?.PlayOverworld(inCabin: true, fade: 1.0f);
     }
 
     private IEnumerator FadeTransition(Vector2 targetPosition, bool enteringHouse)
@@ -426,6 +438,9 @@ public class GameManager : MonoBehaviour
         // Optional: adjust camera instantly when entering
         if (enteringHouse)
             overworldCamera.transform.position = new Vector3(-50, 3, -10);
+
+        // AUDIO: swap ambience based on indoors/outdoors
+        MusicManager.I?.PlayOverworld(inCabin: enteringHouse, fade: 0.8f);
 
         // Fade back in
         fade.StartFade(true);
@@ -534,6 +549,9 @@ public class GameManager : MonoBehaviour
         screenShake.StartShake(3, .5f);
         Debug.Log("entity rises");
 
+        // AUDIO: entity surfaces from water cue
+        MusicManager.I?.PlayEntityEmergence(0.8f);
+
         StartCoroutine(MoveObjectUp(entitySurface, 10f, 3f));
 
         yield return new WaitForSeconds(3);
@@ -544,6 +562,9 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
 
         endingDialogue = true;
+
+        // AUDIO: unknown ending music (continues into credits)
+        MusicManager.I?.PlayUnknownEnding(1.2f, loop: false);
 
         string message = "You did well, little Fisherman.[p]" +
                         "You gave what was asked. You did not question.[p]" +
@@ -604,6 +625,8 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator KnownEnding() // Pre dialogue
     {
+        // AUDIO: seamless known ending (A 17s -> B in credits)
+        MusicManager.I?.PlayKnownEndingTwoPart(17.0);
 
         nightOverlay.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 100f / 255f);
 
@@ -630,39 +653,36 @@ public class GameManager : MonoBehaviour
     }
     private IEnumerator KnownEnding2() // Post dialogue
     {
+
         StartCoroutine(FadeOutObject(entityCorpse, 3f));
         yield return new WaitForSeconds(3f);
 
-        // Extra linger on the corpse after fade
-        yield return new WaitForSeconds(2f); // +2.0s
-
         playerCol.enabled = false;
 
-        // Walk left slower than normal (3.5 u/s → 14/3.5 = 4.0s)
-        playerRB.linearVelocity = Vector2.left * 3.5f;
+        playerRB.linearVelocity = Vector2.left * moveSpeed;
+
         while (playerRB.position.x > 9f)
             yield return null;
 
-        // Stop at the corner and pause briefly
+        // stop, snap X only to the corner, keep current Y (now -2), then head down
         playerRB.linearVelocity = Vector2.zero;
         playerRB.transform.position = new Vector2(9f, playerRB.position.y);
-        yield return new WaitForSeconds(1f); // +1.0s
+        playerRB.linearVelocity = Vector2.down * moveSpeed;
 
-        // Walk down slower (3.0 u/s → 9/3.0 = 3.0s)
-        playerRB.linearVelocity = Vector2.down * 3.0f;
-        while (playerRB.position.y > -6f)
+
+        while (playerRB.position.y > -6)
             yield return null;
 
         freeCamera = true;
 
-        while (playerRB.position.y > -11f)
+        while (playerRB.position.y > -11)
             yield return null;
 
-        // Hold in silence before the fade
-        yield return new WaitForSeconds(3.1f); // +3.1s
+        // Player currently walks over the tiles below the path opening. The easiest way to fix this would be to put some more tiles down there on a layer above the player
 
         fade.StartFade();
-        yield return new WaitForSeconds(0.9f); // don't change this
+
+        yield return new WaitForSeconds(.9f); // Don't change this time!
 
         SceneManager.LoadScene(2);
     }

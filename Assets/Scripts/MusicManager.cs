@@ -1,7 +1,6 @@
 // MusicManager.cs
-// Drop on a GameObject named "MusicManager". It will DontDestroyOnLoad.
-// Add no components manually if you don’t want to — it will create 3 AudioSources on Awake:
-//   Music A, Music B (for crossfading), and Ambience (for cabin loop).
+// Persistent music + ambience manager with per-clip volume control.
+// Uses two music sources for crossfades and a third for ambience.
 
 using System.Collections;
 using UnityEngine;
@@ -14,27 +13,26 @@ public class MusicManager : MonoBehaviour
     [Header("Core Themes")]
     public AudioClip mainMenu;
     public AudioClip overworldTheme;
-    public AudioClip cabinAmbience;   // looping ambience used when inside the cabin
+    public AudioClip cabinAmbience;
 
     [Header("Fishing Variants")]
-    public AudioClip fishing12;       // days 1–2
-    public AudioClip fishing35;       // days 3–5
+    public AudioClip fishing12;      // days 1–2
+    public AudioClip fishing35;      // days 3–5
 
     [Header("Special Cues")]
-    public AudioClip entityReelUp;    // when reeling the entity at the very end
-    public AudioClip entityEmerge;    // when the entity surfaces in overworld
+    public AudioClip entityReelUp;
+    public AudioClip entityEmerge;
 
     [Header("Endings")]
-    public AudioClip unknownEnding;   // obedient ending (can be non-looping)
-    public AudioClip knownEnding_A;   // 17s piece that plays in overworld before cut
-    public AudioClip knownEnding_B;   // continues in credits scene (can loop)
+    public AudioClip unknownEnding;  // obedient ending
+    public AudioClip knownEnding_A;  // 17s part in overworld
+    public AudioClip knownEnding_B;  // continuation in credits
 
-    [Header("Mixer/Volumes/Fades")]
-    [Range(0f, 2f)] public float musicVolume = 0.9f;
-    [Range(0f, 2f)] public float ambienceVolume = 0.6f;
-    [Range(0.02f, 5f)] public float defaultFade = 1.25f;
+    [Header("Global Settings")]
+    [Range(0f, 2f)] public float musicVolume = 0.9f;     // base default for music
+    [Range(0.02f, 5f)] public float defaultFade = 1.25f; // default crossfade time
 
-    // internal audio sources
+    // internal sources
     AudioSource a;   // music A
     AudioSource b;   // music B
     AudioSource amb; // ambience
@@ -48,13 +46,10 @@ public class MusicManager : MonoBehaviour
         I = this;
         DontDestroyOnLoad(gameObject);
 
-        // find or add three AudioSources on this same GameObject
         var sources = GetComponents<AudioSource>();
         if (sources.Length < 3)
         {
-            // clear any existing for a clean setup
             foreach (var s in sources) Destroy(s);
-
             a = gameObject.AddComponent<AudioSource>();
             b = gameObject.AddComponent<AudioSource>();
             amb = gameObject.AddComponent<AudioSource>();
@@ -87,8 +82,7 @@ public class MusicManager : MonoBehaviour
 
     void OnSceneChanged(Scene oldS, Scene newS)
     {
-        // no automatic switching — you’ll drive it from your gameplay code.
-        // left here in case you want scene-name based defaults later.
+        // Intentionally empty. Drive music from gameplay code.
     }
 
     static void NameSource(AudioSource s, string label)
@@ -108,7 +102,7 @@ public class MusicManager : MonoBehaviour
         s.pitch = 1f;
     }
 
-    // public API ---------------------------------------------------------------
+    // Public API ---------------------------------------------------------------
 
     public void PlayMainMenu(float fade = -1f)
     {
@@ -116,7 +110,7 @@ public class MusicManager : MonoBehaviour
         CrossfadeTo(mainMenu, fade, true);
     }
 
-    // overworld: pass inCabin = true when you are actually inside the cabin
+    // inCabin: true when indoors to enable ambience
     public void PlayOverworld(bool inCabin, float fade = -1f)
     {
         CrossfadeTo(overworldTheme, fade, true);
@@ -130,7 +124,6 @@ public class MusicManager : MonoBehaviour
         CrossfadeTo(clip, fade, true);
     }
 
-    // short stingers/cues — these replace the current music with a cue
     public void PlayEntityReelUp(float fade = -1f)
     {
         SetAmbience(null, defaultFade);
@@ -149,14 +142,11 @@ public class MusicManager : MonoBehaviour
         CrossfadeTo(unknownEnding, fade, loop);
     }
 
-    // schedules a seamless A -> B handoff that survives scene loads
-    // partALengthSeconds should match the exact rendered length of knownEnding_A (eg 17.0)
-    public void PlayKnownEndingTwoPart(double partALengthSeconds, float targetVol = -1f, double preDelay = 0.05)
+    // Schedules Known Ending Part A -> Part B with per-clip volumes
+    public void PlayKnownEndingTwoPart(double partALengthSeconds, float preDelay = 0.05f)
     {
         if (!knownEnding_A || !knownEnding_B) return;
-        if (targetVol < 0f) targetVol = musicVolume;
 
-        // stop any active fades and reset
         if (fadeCR != null) StopCoroutine(fadeCR);
         a.Stop(); b.Stop(); amb.Stop();
         a.volume = b.volume = amb.volume = 0f;
@@ -165,27 +155,28 @@ public class MusicManager : MonoBehaviour
         var srcB = b;
 
         double now = AudioSettings.dspTime;
-        double startA = now + Mathf.Max(0.0f, (float)preDelay);
+        double startA = now + Mathf.Max(0f, preDelay);
         double endA = startA + partALengthSeconds;
-        double startB = endA; // butt-join — no gap
+        double startB = endA;
 
-        // schedule A (non-loop)
+        float volA = GetVolumeForClip(knownEnding_A);
+        float volB = GetVolumeForClip(knownEnding_B);
+
         srcA.clip = knownEnding_A;
         srcA.loop = false;
-        srcA.volume = targetVol;  // set gain before scheduling
+        srcA.volume = volA;
         srcA.PlayScheduled(startA);
         srcA.SetScheduledEndTime(endA);
 
-        // schedule B (looping in credits)
         srcB.clip = knownEnding_B;
         srcB.loop = true;
-        srcB.volume = targetVol;
+        srcB.volume = volB;
         srcB.PlayScheduled(startB);
 
         activeMusic = srcB;
     }
 
-    // fades ambience on/off (null turns it off)
+    // Ambience uses per-clip volume too
     public void SetAmbience(AudioClip clip, float fade = -1f)
     {
         if (fade < 0f) fade = defaultFade;
@@ -198,7 +189,7 @@ public class MusicManager : MonoBehaviour
 
         if (amb.clip != clip) amb.clip = clip;
         if (!amb.isPlaying) amb.Play();
-        StartCoroutine(FadeAudio(amb, ambienceVolume, fade, stopAtZero: false));
+        StartCoroutine(FadeAudio(amb, GetVolumeForClip(clip), fade, stopAtZero: false));
     }
 
     public void HardStopAll()
@@ -209,18 +200,19 @@ public class MusicManager : MonoBehaviour
         a.clip = b.clip = amb.clip = null;
     }
 
-    // helpers -----------------------------------------------------------------
+    // Internals ----------------------------------------------------------------
 
     void CrossfadeTo(AudioClip next, float fade, bool loop)
     {
         if (!next) return;
         if (fade < 0f) fade = defaultFade;
 
-        // if the active source already has this clip, just ensure volumes/loop are correct
+        float targetVol = GetVolumeForClip(next);
+
         if (activeMusic != null && activeMusic.clip == next)
         {
             activeMusic.loop = loop;
-            StartFade(activeMusic, musicVolume, fade);
+            StartFade(activeMusic, targetVol, fade);
             return;
         }
 
@@ -233,7 +225,7 @@ public class MusicManager : MonoBehaviour
         to.Play();
 
         if (fadeCR != null) StopCoroutine(fadeCR);
-        fadeCR = StartCoroutine(CrossfadeRoutine(from, to, musicVolume, fade));
+        fadeCR = StartCoroutine(CrossfadeRoutine(from, to, targetVol, fade));
         activeMusic = to;
     }
 
@@ -286,5 +278,28 @@ public class MusicManager : MonoBehaviour
         src.volume = target;
         if (stopAtZero && Mathf.Approximately(target, 0f))
             src.Stop();
+    }
+
+    // Per-clip volume map (0–1)
+    float GetVolumeForClip(AudioClip clip)
+    {
+        if (!clip) return musicVolume;
+
+        if (clip == mainMenu) return 0.70f;
+        if (clip == overworldTheme) return 0.90f;
+
+        if (clip == cabinAmbience) return 0.40f; // set your ambience level here
+
+        if (clip == fishing12) return 0.80f;
+        if (clip == fishing35) return 1.00f;
+
+        if (clip == entityReelUp) return 0.70f;
+        if (clip == entityEmerge) return 0.90f;
+
+        if (clip == unknownEnding) return 0.80f;
+        if (clip == knownEnding_A) return 0.85f;
+        if (clip == knownEnding_B) return 0.85f;
+
+        return musicVolume;
     }
 }
