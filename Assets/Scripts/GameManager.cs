@@ -94,14 +94,9 @@ public class GameManager : MonoBehaviour
     {
         freeCamera = true;
 
-        if (lanternSpr != null)
-            lanternSpr.SetActive(!hasLantern);
-
-        if (lanternGlowPlayer != null)
-            lanternGlowPlayer.SetActive(hasLantern);
-
-        if (playerAnimator != null)
-            playerAnimator.SetBool("HasLantern", hasLantern);
+        lanternSpr?.SetActive(!hasLantern);
+        playerAnimator?.SetBool("HasLantern", hasLantern);
+        SetLanternGlow(hasLantern, hasLantern ? 0.25f : 0f);
 
         dialogue.gameObject.SetActive(true);
         Canvas.ForceUpdateCanvases();
@@ -206,50 +201,37 @@ public class GameManager : MonoBehaviour
             StartFishing();
         else if (choiceEventName == "LeaveHouse")
         {
-            playerRB.transform.position = leaveHousePosition;
-            freeCamera = false;
+            StartCoroutine(FadeTransition(leaveHousePosition, false));
         }
         else if (choiceEventName == "EnterHouse")
         {
-            playerRB.transform.position = enterHousePosition;
-            freeCamera = true;
-            overworldCamera.transform.position = new(-50, 3, -10);
+            StartCoroutine(FadeTransition(enterHousePosition, true));
         }
         else if (choiceEventName == "Lantern")
         {
             if (hasLantern)
             {
-                // If player currently has it, put it back
+                // Player already has it — put it back
                 hasLantern = false;
 
-                // Enable the scene lantern again
-                if (lanternSpr != null)
-                    lanternSpr.SetActive(true);
+                // Re-enable the scene lantern
+                lanternSpr?.SetActive(true);
 
-                // Turn off the player’s glow
-                if (lanternGlowPlayer != null)
-                    lanternGlowPlayer.SetActive(false);
-
-                // Switch to non-lantern animation set
-                if (playerAnimator != null)
-                    playerAnimator.SetBool("HasLantern", false);
+                // Disable player glow and reset animation
+                SetLanternGlow(false, 0f);
+                playerAnimator?.SetBool("HasLantern", false);
             }
             else
             {
                 // Player picks it up
                 hasLantern = true;
 
-                // Hide the scene lantern
-                if (lanternSpr != null)
-                    lanternSpr.SetActive(false);
+                // Hide the scene lantern in the world
+                lanternSpr?.SetActive(false);
 
-                // Turn on the player’s glow
-                if (lanternGlowPlayer != null)
-                    lanternGlowPlayer.SetActive(true);
-
-                // Switch to lantern animation set
-                if (playerAnimator != null)
-                    playerAnimator.SetBool("HasLantern", true);
+                // Enable player glow and update animation
+                SetLanternGlow(true, 0.25f);
+                playerAnimator?.SetBool("HasLantern", true);
             }
         }
         else if (choiceEventName == "Bed")
@@ -309,18 +291,19 @@ public class GameManager : MonoBehaviour
     }
     private void NoFishTime()
     {
+        // Transition visuals
         nightOverlay.SetActive(true);
-        lanternFlicker.baseAlpha = 0.1f;
-        lanternFlicker.transform.localScale = new Vector2(1.5f, 1.5f);
+        SetLanternGlow(true, 0.1f);
 
+        // Switch back to overworld
         overworldToggle.SetActive(true);
         fishingToggle.SetActive(false);
 
+        // Ensure player has lantern and correct animation
         hasLantern = true;
         playerAnimator?.SetBool("HasLantern", true);
         playerAnimator?.Play("IdleTree_lantern");
         lanternSpr?.SetActive(false);
-        lanternGlowPlayer?.SetActive(true);
 
         if (currentDay == 5)
         {
@@ -328,8 +311,8 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        // Reset player position and controls
         playerRB.transform.position = stopFishingPosition;
-
         ToggleStun(false);
     }
     private void UpdateTilesForDay()
@@ -380,48 +363,88 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator Bedtime()
     {
+        // Begin transition to sleep
         ToggleStun(true);
         playerRB.transform.position = new(-50.5f, 2.5f);
         playerSR.enabled = false;
         layInBed.SetActive(true);
 
-        float alpha = 1;
-        while (alpha > 0)
+        // Fade room light to black
+        float alpha = 1f;
+        while (alpha > 0f)
         {
-            alpha -= Time.deltaTime * 3;
-            if (alpha < 0) alpha = 0;
+            alpha -= Time.deltaTime * 3f;
+            if (alpha < 0f) alpha = 0f;
 
-            Color newColor = Color.white;
-            newColor.a = alpha;
-            roomSR.color = newColor;
-
+            roomSR.color = new Color(1f, 1f, 1f, alpha);
             yield return null;
         }
 
-        // Dream event
-        //yield return new WaitForSeconds(3);
-
+        // Fade out and advance day
         fade.StartFade();
-        yield return new WaitForSeconds(.9f);
+        yield return new WaitForSeconds(0.9f);
 
         roomSR.color = Color.white;
 
-        currentDay += 1;
+        // Progress the day safely
+        currentDay++;
         if (MaxDay > 0)
             currentDay = Mathf.Clamp(currentDay, 1, MaxDay);
 
+        // Update tiles, environment, and reset state
         UpdateTilesForDay();
         hasFishedToday = false;
         altarFish.SetActive(false);
         nightOverlay.SetActive(false);
-        lanternFlicker.baseAlpha = 0.25f;
-        lanternFlicker.transform.localScale = new Vector2(1, 1);
+        SetLanternGlow(true, 0.25f);
 
+
+        // Wake up
         layInBed.SetActive(false);
         playerSR.enabled = true;
         ToggleStun(false);
     }
 
+    private IEnumerator FadeTransition(Vector2 targetPosition, bool enteringHouse)
+    {
+        // Fade out
+        fade.StartFade();
+        yield return new WaitForSeconds(0.9f);
+
+        // Teleport player after screen goes dark
+        playerRB.transform.position = targetPosition;
+        freeCamera = enteringHouse;
+
+        // Optional: adjust camera instantly when entering
+        if (enteringHouse)
+            overworldCamera.transform.position = new Vector3(-50, 3, -10);
+
+        // Fade back in
+        fade.StartFade(true);
+    }
+
+    // Normalize the player's lantern glow any time it changes
+    private void SetLanternGlow(bool on, float alpha)
+    {
+        if (lanternGlowPlayer != null)
+            lanternGlowPlayer.SetActive(on);
+
+        if (lanternFlicker != null)
+            lanternFlicker.baseAlpha = alpha;
+
+        // Always keep glow at 2x scale
+        if (lanternGlowPlayer != null)
+            lanternGlowPlayer.transform.localScale = new Vector3(2f, 2f, 1f);
+
+        // Ensure sprite alpha isn’t fighting the flicker
+        var sr = lanternGlowPlayer ? lanternGlowPlayer.GetComponent<SpriteRenderer>() : null;
+        if (sr != null)
+        {
+            var c = sr.color;
+            c.a = 1f;
+            sr.color = c;
+        }
+    }
 
 
 

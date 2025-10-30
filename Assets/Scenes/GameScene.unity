@@ -1166,8 +1166,8 @@ Transform:
   m_GameObject: {fileID: 125411257}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 64.1941, y: -1.4528, z: 0}
-  m_LocalScale: {x: 58.07006, y: 21.2455, z: 1}
+  m_LocalPosition: {x: 64.1941, y: -5.9103, z: 0}
+  m_LocalScale: {x: 58.07006, y: 30.160112, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 40692645}
@@ -17778,7 +17778,7 @@ Transform:
   m_GameObject: {fileID: 891631008}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 9.67, y: -14.77, z: 0}
+  m_LocalPosition: {x: 9.71, y: -14.77, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -86981,7 +86981,7 @@ PrefabInstance:
       objectReference: {fileID: 216156107}
     - target: {fileID: 8715431083449239056, guid: e40616fd5af839445a013a5066c24568, type: 3}
       propertyPath: timerLength
-      value: 60
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8715431083449239056, guid: e40616fd5af839445a013a5066c24568, type: 3}
       propertyPath: depthMeterBar
