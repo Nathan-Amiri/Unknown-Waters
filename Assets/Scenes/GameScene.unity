@@ -2031,7 +2031,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 216156101}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07fe5056b5af0b8449a548059394ddc8, type: 3}
   m_Name: 
@@ -2058,11 +2058,11 @@ Transform:
   m_GameObject: {fileID: 216156101}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -4, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1934666830}
+  m_Father: {fileID: 296838929}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &216156107
 MonoBehaviour:
@@ -3469,6 +3469,56 @@ MonoBehaviour:
   bobFrequency: 1
   swayAmplitude: 0.05
   swayFrequency: 0.5
+--- !u!1 &296838927
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 296838929}
+  - component: {fileID: 296838928}
+  m_Layer: 0
+  m_Name: CameraRig
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &296838928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296838927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07fe5056b5af0b8449a548059394ddc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
+  player: {fileID: 1833534223}
+  smoothSpeed: 5
+  offset: {x: 0, y: 0, z: -10}
+  topY: -4
+  followStartY: 0
+--- !u!4 &296838929
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296838927}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -4, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 216156105}
+  m_Father: {fileID: 1934666830}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &321381856
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18880,7 +18930,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1006837941
 Transform:
   m_ObjectHideFlags: 0
@@ -19135,7 +19185,7 @@ MonoBehaviour:
   leaveHousePosition: {x: 0.65, y: 0.5}
   stopFishingPosition: {x: 31, y: 4.1}
   currentDay: 5
-  obedience: -7
+  obedience: 10
   isStunned: 0
   freeCamera: 0
 --- !u!4 &1037046216
@@ -54894,7 +54944,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1534903645
 Transform:
   m_ObjectHideFlags: 0
@@ -87063,6 +87113,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2065349923}
     - target: {fileID: 8715431083449239056, guid: e40616fd5af839445a013a5066c24568, type: 3}
+      propertyPath: finalEntity
+      value: 
+      objectReference: {fileID: 2047491522}
+    - target: {fileID: 8715431083449239056, guid: e40616fd5af839445a013a5066c24568, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1037046215}
@@ -87839,7 +87893,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1934666830
 Transform:
   m_ObjectHideFlags: 0
@@ -87853,7 +87907,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 216156105}
+  - {fileID: 296838929}
   - {fileID: 384060217}
   - {fileID: 1335220308}
   - {fileID: 1833534223}
@@ -89640,8 +89694,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 2089868871}
+  - {fileID: 1037046216}
   - {fileID: 1534903645}
   - {fileID: 1934666830}
   - {fileID: 2019228112}
-  - {fileID: 1037046216}
   - {fileID: 622026648}
