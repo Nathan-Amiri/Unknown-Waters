@@ -564,7 +564,6 @@ public class GameManager : MonoBehaviour
         endingDialogue = true;
 
         // AUDIO: unknown ending music (continues into credits)
-        MusicManager.I?.PlayUnknownEnding(1.2f, loop: false);
 
         string message = "You did well, little Fisherman.[p]" +
                         "You gave what was asked. You did not question.[p]" +
@@ -683,6 +682,8 @@ public class GameManager : MonoBehaviour
         fade.StartFade();
 
         yield return new WaitForSeconds(.9f); // Don't change this time!
+
+        MusicManager.I?.PlayUnknownEnding(1.2f, loop: false);
 
         SceneManager.LoadScene(2);
     }

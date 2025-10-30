@@ -90323,6 +90323,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MusicManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7687322373604910668, guid: 5aaf2757c2433224bbb9bbd74b44b2e7, type: 3}
+      propertyPath: entityEmerge
+      value: 
+      objectReference: {fileID: 8300000, guid: 7b07f582162be5541b8f45baea76ff60, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8606585856484269807, guid: 5aaf2757c2433224bbb9bbd74b44b2e7, type: 3}

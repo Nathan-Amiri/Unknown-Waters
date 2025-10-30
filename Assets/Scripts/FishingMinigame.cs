@@ -253,6 +253,7 @@ public class FishingMinigame : MonoBehaviour
             {
                 finalEntityHooked = true;
                 screenShake.StartContinuous(0.7f);  // strength to taste (0.4–0.9)
+                MusicManager.I?.PlayEntityReelUp(0.8f);
             }
         }
         else if (col.CompareTag("Fish"))
