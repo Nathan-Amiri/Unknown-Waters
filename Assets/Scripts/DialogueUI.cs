@@ -21,6 +21,15 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] private float charsPerSecond = 45f;
     [SerializeField] private float fastForwardMultiplier = 4f;
 
+    [Header("Typing SFX (simple & safe)")]
+    [SerializeField] private AudioSource sfxSource;     // 2D AudioSource on this object (spatialBlend=0, playOnAwake=false)
+    [SerializeField] private AudioClip blipClip;        // short mono WAV (20–80 ms)
+    [SerializeField] private int charsPerBlip = 2;      // play every N visible characters
+    [SerializeField] private bool skipPunctuation = true;
+    [SerializeField] private bool muteWhileFastForwarding = true;
+    [SerializeField, Range(0.9f, 1.1f)] private float minPitch = 0.98f;
+    [SerializeField, Range(0.9f, 1.1f)] private float maxPitch = 1.02f;
+
     public bool IsOpen { get; private set; }
 
     // runtime state
@@ -40,17 +49,22 @@ public class DialogueUI : MonoBehaviour
     {
         root.SetActive(false);
         SetChoicesVisible(false);
+        // lightweight guard so missing audio never throws
+        if (sfxSource != null) sfxSource.playOnAwake = false;
     }
 
     void Update()
     {
         if (!IsOpen) return;
 
-        // navigate choices when visible - horiztonal
+        // navigate choices when visible - horizontal (A/D or arrows)
         if (hasChoices && pageFullyShown)
         {
-            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) { selectedIndex = Mathf.Max(0, selectedIndex - 1); UpdateChoiceCursors(); }
-            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) { selectedIndex = Mathf.Min(1, selectedIndex + 1); UpdateChoiceCursors(); }
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+            { selectedIndex = Mathf.Max(0, selectedIndex - 1); UpdateChoiceCursors(); }
+
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+            { selectedIndex = Mathf.Min(1, selectedIndex + 1); UpdateChoiceCursors(); }
         }
 
         // confirm and paging with Space
@@ -58,7 +72,7 @@ public class DialogueUI : MonoBehaviour
         {
             if (!pageFullyShown)
             {
-                // finish page instantly
+                // finish page instantly (don’t spam any remaining blips)
                 if (typeRoutine != null) StopCoroutine(typeRoutine);
                 messageText.maxVisibleCharacters = int.MaxValue;
                 pageFullyShown = true;
@@ -129,17 +143,38 @@ public class DialogueUI : MonoBehaviour
 
     private IEnumerator TypeRoutine(string fullText)
     {
+        // set text and compute visible characters using TMP, so we ignore rich-text tags
         messageText.text = fullText;
+        messageText.ForceMeshUpdate();
+        int visibleCount = messageText.textInfo.characterCount;
+
         messageText.maxVisibleCharacters = 0;
         pageFullyShown = false;
 
-        int total = fullText.Length;
+        // early out if nothing to show
+        if (visibleCount <= 0)
+        {
+            messageText.maxVisibleCharacters = int.MaxValue;
+            pageFullyShown = true;
+            if (hasChoices && pageIndex == pages.Count - 1)
+                SetChoicesVisible(true);
+            yield break;
+        }
 
-        for (int i = 0; i < total; i++)
+        int blipCounter = 0;
+
+        for (int i = 0; i < visibleCount; i++)
         {
             bool fast = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
             float rate = charsPerSecond * (fast ? fastForwardMultiplier : 1f);
+
+            // reveal one more character
             messageText.maxVisibleCharacters = i + 1;
+
+            // maybe blip
+            TryPlayBlip(i, fast, ref blipCounter);
+
+            // pace
             yield return new WaitForSeconds(1f / Mathf.Max(1f, rate));
         }
 
@@ -148,6 +183,28 @@ public class DialogueUI : MonoBehaviour
 
         if (hasChoices && pageIndex == pages.Count - 1)
             SetChoicesVisible(true);
+    }
+
+    private void TryPlayBlip(int visibleCharIndex, bool fastForward, ref int blipCounter)
+    {
+        if (sfxSource == null || blipClip == null) return;
+        if (muteWhileFastForwarding && fastForward) return;
+
+        // pull the actual visible character from TMP
+        if (visibleCharIndex < 0 || visibleCharIndex >= messageText.textInfo.characterInfo.Length) return;
+        var chInfo = messageText.textInfo.characterInfo[visibleCharIndex];
+        char ch = chInfo.character;
+
+        if (skipPunctuation && !char.IsLetterOrDigit(ch)) return;
+
+        blipCounter++;
+        if (blipCounter < Mathf.Max(1, charsPerBlip)) return;
+        blipCounter = 0;
+
+        // tiny pitch variation to avoid machine-gun sameness
+        float p = UnityEngine.Random.Range(minPitch, maxPitch);
+        sfxSource.pitch = p;
+        sfxSource.PlayOneShot(blipClip);
     }
 
     private void NextPageOrClose()
@@ -188,7 +245,6 @@ public class DialogueUI : MonoBehaviour
 
         if (visible)
         {
-
             // Always start on Yes
             selectedIndex = 0;
             UpdateChoiceCursors();
