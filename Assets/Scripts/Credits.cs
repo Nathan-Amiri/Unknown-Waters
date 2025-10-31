@@ -41,7 +41,7 @@ public class Credits : MonoBehaviour
         yield return new WaitForSeconds(4);
 
         creditsText.color = Color.cyan;
-        creditsText.text = "Taylor:\n\nAdditional Art";
+        creditsText.text = "Taylor Poorman:\n\nAdditional Art";
 
         yield return new WaitForSeconds(4);
 
