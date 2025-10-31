@@ -19563,7 +19563,7 @@ MonoBehaviour:
   leaveHousePosition: {x: 0.65, y: 0.5}
   stopFishingPosition: {x: 31, y: 4.1}
   currentDay: 5
-  obedience: 10
+  obedience: -10
   isStunned: 0
   freeCamera: 0
   entitySurface: {fileID: 275072137}
@@ -90428,6 +90428,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MusicManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7687322373604910668, guid: 5aaf2757c2433224bbb9bbd74b44b2e7, type: 3}
+      propertyPath: beached
+      value: 
+      objectReference: {fileID: 8300000, guid: 6b485942db53f674a8684fc7c45a3a6e, type: 3}
     - target: {fileID: 7687322373604910668, guid: 5aaf2757c2433224bbb9bbd74b44b2e7, type: 3}
       propertyPath: entityEmerge
       value: 

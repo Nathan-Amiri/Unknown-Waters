@@ -26,6 +26,8 @@ public class MusicManager : MonoBehaviour
     [Header("Endings")]
     public AudioClip unknownEnding;  // obedient ending
 
+    public AudioClip beached;
+
     public AudioClip knownEndingSingle;
 
     public AudioClip knownEnding_A;  // 17s part in overworld
@@ -145,7 +147,6 @@ public class MusicManager : MonoBehaviour
         CrossfadeTo(unknownEnding, fade, loop);
     }
 
-    /*
         // Schedules Known Ending Part A -> Part B with per-clip volumes
         public void PlayKnownEndingTwoPart(double partALengthSeconds, float preDelay = 0.05f)
         {
@@ -179,7 +180,7 @@ public class MusicManager : MonoBehaviour
 
             activeMusic = srcB;
         }
-    */
+
     public void PlayKnownEndingSingle(float fade = -1f, bool loop = false)
     {
         SetAmbience(null, defaultFade);
@@ -306,6 +307,7 @@ public class MusicManager : MonoBehaviour
         if (clip == entityReelUp) return 0.70f;
         if (clip == entityEmerge) return 0.50f;
 
+        if (clip == beached) return 0.75f;
         if (clip == unknownEnding) return 0.80f;
         if (clip == knownEnding_A) return 0.85f;
         if (clip == knownEnding_B) return 0.85f;
@@ -334,4 +336,11 @@ public class MusicManager : MonoBehaviour
         fadeCR = StartCoroutine(CrossfadeRoutine(activeMusic, next, GetVolumeForClip(entityEmerge), fadeIn));
         activeMusic = next;
     }
+
+    public void PlayBeached(float fade = -1f, bool loop = true)
+    {
+        SetAmbience(null, defaultFade);
+        CrossfadeTo(beached, fade, loop);
+    }
+
 }

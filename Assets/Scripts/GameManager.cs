@@ -638,7 +638,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator KnownEnding() // Pre dialogue
     {
         // AUDIO: seamless known ending (A 17s -> B in credits)
-        MusicManager.I?.HardStopAll();
+        MusicManager.I?.PlayBeached(1.25f);
 
         nightOverlay.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 100f / 255f);
 
@@ -664,8 +664,8 @@ public class GameManager : MonoBehaviour
     }
     private IEnumerator KnownEnding2() // Post dialogue
     {
-        // Start the single known-ending track
-        MusicManager.I?.PlayKnownEndingSingle(1.2f, loop: false);
+        // Start the double known-ending track
+        MusicManager.I?.PlayKnownEndingTwoPart(17.0, preDelay: 0.05f);
 
         // Corpse fade-out and short pause
         StartCoroutine(FadeOutObject(entityCorpse, 3f));
