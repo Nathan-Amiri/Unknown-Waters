@@ -19562,8 +19562,8 @@ MonoBehaviour:
   enterHousePosition: {x: -51.5, y: 0}
   leaveHousePosition: {x: 0.65, y: 0.5}
   stopFishingPosition: {x: 31, y: 4.1}
-  currentDay: 1
-  obedience: -5
+  currentDay: 5
+  obedience: 10
   isStunned: 0
   freeCamera: 0
   entitySurface: {fileID: 275072137}
@@ -87763,7 +87763,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8715431083449239056, guid: e40616fd5af839445a013a5066c24568, type: 3}
       propertyPath: tensionIncreaseSpeed
-      value: 45
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8871627646921685109, guid: e40616fd5af839445a013a5066c24568, type: 3}
       propertyPath: m_IsActive

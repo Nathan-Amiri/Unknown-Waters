@@ -312,4 +312,26 @@ public class MusicManager : MonoBehaviour
 
         return musicVolume;
     }
+
+    public void PlayEntityEmergence_CleanLoop(float fadeIn = -1f)
+    {
+        if (fadeIn < 0f) fadeIn = defaultFade;
+        if (!entityEmerge) return;
+
+        // pick the inactive music source for crossfade safety
+        AudioSource next = (activeMusic == a) ? b : a;
+
+        // set up the clip to loop natively (no loop-window coroutine)
+        next.Stop();
+        next.clip = entityEmerge;
+        next.loop = true;
+        next.time = 0f;
+        next.volume = 0f;
+        next.Play();
+
+        // fade out the old source, fade in the new
+        if (fadeCR != null) StopCoroutine(fadeCR);
+        fadeCR = StartCoroutine(CrossfadeRoutine(activeMusic, next, GetVolumeForClip(entityEmerge), fadeIn));
+        activeMusic = next;
+    }
 }

@@ -399,9 +399,10 @@ public class GameManager : MonoBehaviour
             fishingToggle.SetActive(false);
             overworldToggle.SetActive(true);
         }
+
         hasFishedToday = false;
         hasFish = false;
-        StopAllCoroutines();
+        //StopAllCoroutines();
 
         // Fade out and advance day
         fade.StartFade();
@@ -560,7 +561,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("entity rises");
 
         // AUDIO: entity surfaces from water cue
-        MusicManager.I?.PlayEntityEmergence(0.8f);
+        MusicManager.I?.PlayEntityEmergence_CleanLoop(1.25f);
 
         StartCoroutine(MoveObjectUp(entitySurface, 10f, 3f));
 
