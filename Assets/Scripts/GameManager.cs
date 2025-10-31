@@ -263,6 +263,7 @@ public class GameManager : MonoBehaviour
     }
     private void FishTime()
     {
+        nightOverlay.SetActive(false); // ensure clear view entering minigame
         hasFishedToday = true;
         ToggleStun(true);
 
@@ -392,6 +393,15 @@ public class GameManager : MonoBehaviour
             roomSR.color = new Color(1f, 1f, 1f, alpha);
             yield return null;
         }
+
+        if (fishingToggle.activeSelf)
+        {
+            fishingToggle.SetActive(false);
+            overworldToggle.SetActive(true);
+        }
+        hasFishedToday = false;
+        hasFish = false;
+        StopAllCoroutines();
 
         // Fade out and advance day
         fade.StartFade();

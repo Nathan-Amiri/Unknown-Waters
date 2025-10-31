@@ -298,7 +298,7 @@ public class MusicManager : MonoBehaviour
         if (clip == mainMenu) return 0.70f;
         if (clip == overworldTheme) return 0.90f;
 
-        if (clip == cabinAmbience) return 0.40f; // set your ambience level here
+        if (clip == cabinAmbience) return 0.20f; // set your ambience level here
 
         if (clip == fishing12) return 0.80f;
         if (clip == fishing35) return 1.00f;

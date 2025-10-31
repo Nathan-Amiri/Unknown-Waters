@@ -19562,8 +19562,8 @@ MonoBehaviour:
   enterHousePosition: {x: -51.5, y: 0}
   leaveHousePosition: {x: 0.65, y: 0.5}
   stopFishingPosition: {x: 31, y: 4.1}
-  currentDay: 5
-  obedience: -10
+  currentDay: 1
+  obedience: -5
   isStunned: 0
   freeCamera: 0
   entitySurface: {fileID: 275072137}

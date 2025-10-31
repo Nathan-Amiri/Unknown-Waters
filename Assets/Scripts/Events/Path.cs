@@ -7,7 +7,7 @@ public class Path : EventTrigger
         string message = string.Empty;
 
         if (gameManager.currentDay == 1)
-            message = "You gaze down the path. You should take a walk sometime";
+            message = "You gaze down the path. You should take a walk sometime.";
 
         if (gameManager.currentDay == 2)
             message = "You sense something wonderful at the end of the path. Maybe tomorrow you'll explore.";

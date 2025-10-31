@@ -45,7 +45,7 @@ public class Credits : MonoBehaviour
 
         yield return new WaitForSeconds(4);
 
-        creditsText.color = Color.hotPink;
+        creditsText.color = Color.magenta;
         creditsText.text = "Nathan Amiri (azeTrom):\n\nProgramming\nDesign\nGeneral Mayhem";
 
         yield return new WaitForSeconds(4);

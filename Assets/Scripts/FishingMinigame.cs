@@ -29,6 +29,7 @@ public class FishingMinigame : MonoBehaviour
 
     public float fallSpeed;
     public float reelSpeed;
+    private float reelSpeedBase;
     public float moveSpeed;
 
     private const float surfaceBuffer = 0.05f; // keep hook slightly below surface
@@ -61,6 +62,7 @@ public class FishingMinigame : MonoBehaviour
 
     private int fishScore;
 
+    private void Awake() { reelSpeedBase = reelSpeed; }
 
     private void OnEnable()
     {
@@ -69,6 +71,20 @@ public class FishingMinigame : MonoBehaviour
 
     private void StartFishing()
     {
+        reelSpeed = reelSpeedBase;
+
+        finalEntityHooked = false;
+        StopAllCoroutines();
+
+        itGotAway.SetActive(false);
+        hookRB.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        tension = 0f;
+        fishStruggling = false;
+        hookedItem = null;
+        fishStruggleRoutine = null;
+
+
         fishScore = 0;
         fishScoreText.text = "Fish Caught: " + fishScore;
 
@@ -165,11 +181,18 @@ public class FishingMinigame : MonoBehaviour
 
             tension = 0;
 
-            StopCoroutine(fishStruggleRoutine);
+            if (fishStruggleRoutine != null)
+            {
+                StopCoroutine(fishStruggleRoutine);
+                fishStruggleRoutine = null;
+            }
             fishStruggling = false;
 
-            Destroy(hookedItem.gameObject);
-            hookedItem = null;
+            if (hookedItem != null)
+            {
+                Destroy(hookedItem.gameObject);
+                hookedItem = null;
+            }
 
             reelSpeed -= 1;
 
@@ -184,11 +207,12 @@ public class FishingMinigame : MonoBehaviour
 
         // This code block isn't a typo fyi
         {
-            float ratio = 100 / tension;
-            if (ratio > 100) ratio = 100;
-            float offset = tensionMeterBack.rect.height / 2;
+            float safeT = Mathf.Max(0.0001f, tension);
+            float ratio = 100f / safeT;
+            ratio = Mathf.Min(ratio, 100f);
+            float offset = tensionMeterBack.rect.height / 2f;
             float barHeight = (tensionMeterBack.rect.height / ratio) - offset;
-            tensionMeterBar.transform.localPosition = new(0, barHeight);
+            tensionMeterBar.transform.localPosition = new Vector2(0f, barHeight);
         }
     }
 
@@ -204,72 +228,104 @@ public class FishingMinigame : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+        // When the hook returns to the fisherman with something attached
         if (col.CompareTag("Fisherman") && hookedItem != null)
         {
-            if (hookedItem.TryGetComponent(out Fish fish))
-            {
-                gameManager.hasFish = true;
-                fishScore += 1;
-                fishScoreText.text = "Fish Caught: " + fishScore;
-                StopCoroutine(fishStruggleRoutine);
-                gameManager.obedience += 1;
-            }
-            else
+            bool destroyHooked = true;      // default: clear the hook
+            bool applyReelPenalty = true;   // default: reelSpeed -= 1
+
+            // If it's not a fish (junk or final entity)
+            if (!hookedItem.TryGetComponent(out Fish fish))
             {
                 if (gameManager.currentDay == 5)
                 {
-                    StopFishing();
-                    return;
+                    // Only end if it's the final entity; ignore junk turn-in on Day 5
+                    if (hookedItem.gameObject == finalEntity)
+                    {
+                        StopFishing();
+                        return;
+                    }
+
+                    // Day 5 junk: no penalties, but DO clear the hook to avoid ghost junk
+                    destroyHooked = true;
+                    applyReelPenalty = false;
+                }
+                else
+                {
+                    // Days 1–4: subtract time for junk
+                    timer = Mathf.Max(1, timer - 10);
+                    clockText.text = timer.ToString();
+                }
+            }
+            else
+            {
+                // Fish successfully caught
+                gameManager.hasFish = true;
+                fishScore += 1;
+                fishScoreText.text = "Fish Caught: " + fishScore;
+
+                if (fishStruggleRoutine != null)
+                {
+                    StopCoroutine(fishStruggleRoutine);
+                    fishStruggleRoutine = null;
                 }
 
-                // If catch junk, subtract time
-                timer -= 10;
-                if (timer < 1)
-                    timer = 1;
-                clockText.text = timer.ToString();
+                gameManager.obedience += 1;
             }
 
+            // Reset fishing state
             fishStruggling = false;
             tension = 0;
 
-            Destroy(hookedItem.gameObject);
+            if (destroyHooked && hookedItem != null)
+                Destroy(hookedItem.gameObject);
+
             hookedItem = null;
 
-            reelSpeed -= 1;
+            if (applyReelPenalty)
+                reelSpeed -= 1;
         }
 
+        // Ignore if still holding something
         if (hookedItem != null) return;
 
+        // Hooked junk
         if (col.CompareTag("Junk"))
         {
             hookedItem = col.transform;
-
             hookedItem.parent = transform;
-            hookedItem.localPosition = new(0, -2f);
+            hookedItem.localPosition = new Vector3(0f, -2f, 0f);
 
             reelSpeed += 1;
 
+            // Special case: final entity counts as "Junk" but triggers ending
             if (col.gameObject == finalEntity)
             {
                 finalEntityHooked = true;
-                screenShake.StartContinuous(0.7f);  // strength to taste (0.4–0.9)
+                screenShake.StartContinuous(0.7f); // adjustable strength
                 MusicManager.I?.PlayEntityReelUp(0.8f);
             }
         }
+        // Hooked fish
         else if (col.CompareTag("Fish"))
         {
             hookedItem = col.transform;
             Fish fish = col.GetComponent<Fish>();
             fish.StopSwimming();
 
-            fish.isHooked = true;                          // freeze fish logic
+            fish.isHooked = true; // freeze fish logic
+
+            // Unflip sprite so it faces upward
             var sr = hookedItem.GetComponentInChildren<SpriteRenderer>();
-            if (sr) { sr.flipX = false; sr.flipY = false; } // uncheck Flip X/Y
+            if (sr)
+            {
+                sr.flipX = false;
+                sr.flipY = false;
+            }
 
             hookedItem.parent = transform;
             hookedItem.localPosition = new Vector3(0f, -1.5f, 0f);
-            hookedItem.localRotation = Quaternion.Euler(0f, 0f, -90f); // face upward
-
+            hookedItem.localRotation = Quaternion.Euler(0f, 0f, -90f);
 
             fishStruggleRoutine = StartCoroutine(FishStruggle());
 

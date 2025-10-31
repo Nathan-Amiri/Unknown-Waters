@@ -14,6 +14,8 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
+        // Optional: stop or fade out menu music here
+        MusicManager.I?.HardStopAll();
         SceneManager.LoadScene(1);
     }
 }
